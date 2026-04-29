@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BSTM0602</title>
+<link rel="icon" type="image/png" href="Logo.png">
+
+<!-- Bootstrap (needed for your nav to work) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Your original CSS -->
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================
+   GLOBAL BACKGROUND (FIXED FULL PAGE)
+========================= */
+
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url("44.jpg") center/cover no-repeat;
+
+    background-attachment: fixed;
+}
+.hero-section{
+    min-height:auto;
+    padding-bottom:60px;
+}
+
+
+@font-face {
+    font-family: 'OldEnglish';
+    src: url('Contents/OldEnglishFive.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+    
+/* =========================
+   CENTER CONTENT (FIXED)
+========================= */
+.hero-center{
+    position: relative;
+    text-align:center;
+    color:#fff;
+    width:100%;
+    max-width:1400px;
+
+    margin:120px auto 0;
+    padding:0 20px; /* 👈 THIS FIXES EDGE ISSUE */
+}
+
+.gallery{
+    margin-bottom: 80px;
+}
+.hero-center h1{
+    font-family: "Old English Five", serif !important;
+    font-size:63px;
+    line-height:1.2;
+    margin:0 auto;
+}
+
+.hero-center p{
+    font-size:32px;
+    margin-top:15px;
+        max-width:2000px;
+
+            font-family:'OldEnglishCustom', serif;
+
+}
+/* TITLE */
+.hero-center h1{
+    font-size:clamp(28px, 5vw, 60px);
+    margin:20px auto;
+        font-family: "Old English Five", serif !important;
+
+}
+
+.hero-center p{
+    font-size:clamp(14px, 2.5vw, 16px);
+    line-height:1.6;
+            font-family:'OldEnglishCustom', serif;
+    max-width:2000px;
+    margin:0 auto 30px;
+}
+@media (max-width:576px){
+
+    .hero-center{
+        margin-top:100px;
+    }
+
+    .gallery{
+        gap:20px;
+    }
+}
+/* =========================
+   GALLERY (FLOAT STYLE)
+========================= */
+.gallery{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:25px;
+
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 20px; /* 👈 SPACE FROM EDGES */
+}
+
+/* make it responsive */
+@media (max-width: 992px){
+    .gallery{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px){
+    .gallery{
+        grid-template-columns: 1fr; /* 👈 1 IMAGE PER ROW */
+    }
+}
+
+/* CARD */
+.card{
+    width:100%;
+        cursor: pointer;
+
+    aspect-ratio:3/4; /* keeps same shape */
+    position:relative;
+    overflow:hidden;
+}
+
+/* IMAGE */
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+/* DARK OVERLAY */
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0, 0, 0, 0.329);
+    opacity:0;
+    transition:.3s;
+}
+
+.card:hover::after{
+    opacity:1;
+}
+
+.card:hover img{
+    transform:scale(1.1);
+}
+
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:15px;
+
+    font-weight:700;
+    font-family:'OldEnglishCustom', serif;
+
+    color:#fff;
+
+    /* 🔥 STRONG VISIBILITY FIX */
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+
+    /* ✨ FLOAT EFFECT */
+    transform: translateY(100%) scale(0.98);
+    opacity: 0;
+
+    /* ✨ HIGHLIGHT EFFECT */
+    text-shadow:
+        0 2px 6px rgba(0,0,0,0.9),
+        0 0 10px rgba(255,255,255,0.35);
+
+    transition: all .35s ease;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.card:hover .overlay{
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+
+/* MODAL BACKGROUND */
+.modal{
+    display:none; /* hidden by default */
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    z-index:2000;
+
+    align-items:center;
+    justify-content:center;
+}
+
+/* MODAL BOX (FIXED SIZE) */
+.modal-box{
+    display:flex;
+    gap:20px;
+
+    width:90%;
+    max-width:1100px;
+    height:600px;
+
+    background:rgb(255, 251, 202);
+    border-radius:12px;
+    padding:25px;
+
+    overflow:hidden; /* IMPORTANT */
+}
+
+/* IMAGE SIDE */
+.modal-image-wrapper{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* FRAME (IMPORTANT) */
+.image-frame{
+    padding:12px;
+    border:10px solid #c9a66b;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    max-width:100%;
+    max-height:100%;
+}
+
+
+.frame-container{
+    position:relative;
+    flex:1; /* IMPORTANT */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* FRAME IMAGE (TOP LAYER) */
+.frame{
+    position:absolute;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+}
+
+/* ACTUAL IMAGE (INSIDE FRAME) */
+.framed-image{
+    position:relative;
+    max-width:70%;
+    max-height:70%;
+    object-fit:contain;
+}
+
+/* OPTIONAL: make it feel realistic */
+.frame{
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+
+
+@media (max-width:768px){
+
+    .modal{
+        padding:20px; /* space from screen edges */
+    }
+
+    .modal-box{
+        flex-direction:column;
+        width:100%;
+        height:auto;
+        max-height:90vh;
+
+        padding:15px;
+        gap:15px;
+    }
+
+    /* CENTER EVERYTHING */
+    .frame-container{
+        justify-content:center;
+        align-items:center;
+        min-height:250px;
+    }
+
+    /* CONTROL FRAME SIZE ON MOBILE */
+    .frame{
+        max-width:90%;
+        max-height:250px;
+    }
+
+    .framed-image{
+        max-width:60%;
+        max-height:200px;
+    }
+
+    /* TEXT SECTION */
+    .modal-info{
+        width:100%;
+        max-height:200px;
+        overflow-y:auto;
+        text-align:center;
+        padding:10px;
+    }
+
+    .modal-info p{
+        text-align:justify; /* keep your requirement */
+    }
+}
+@media (max-width:480px){
+
+    .frame{
+        max-height:200px;
+    }
+
+    .framed-image{
+        max-height:150px;
+    }
+
+    .modal-info{
+        max-height:180px;
+    }
+}
+
+
+/* IMAGE */
+.image-frame img{
+    max-width:100%;
+    max-height:450px;
+    object-fit:contain;
+}
+
+/* TEXT SIDE */
+.modal-info{
+    flex:1; /* IMPORTANT */
+    overflow-y:auto;
+    padding:10px;
+}
+
+.modal-info h2{
+    margin-bottom:15px;
+}
+
+.modal-info p{
+    text-align:justify;
+    line-height:1.6;
+}
+
+/* CLOSE BUTTON */
+.close{
+    position:absolute;
+    top:25px;
+    right:35px;
+    font-size:30px;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* =========================
+   ORIENTATION HANDLING
+========================= */
+
+/* HORIZONTAL */
+.modal-box.horizontal .image-frame img{
+    max-height:350px;
+}
+
+/* VERTICAL */
+.modal-box.vertical .image-frame img{
+    max-height:500px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width:768px){
+
+    .modal-box{
+        flex-direction:column;
+        height:auto;
+        max-height:90vh;
+        overflow-y:auto;
+    }
+
+    .image-frame img{
+        max-height:300px;
+    }
+}
+
+
+
+/* NAV BAR BASE */
+.custom-nav{
+    background-color: #4d431b33;
+    padding-top:18px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    transition: background-color 0.4s ease;
+}
+
+/* SCROLL STATE */
+.custom-nav.scrolled{
+    background:#c9a66b;
+}
+
+/* HERO OFFSET */
+.hero-section{
+    padding-top: 80px;
+}
+
+/* BRAND */
+.brand-title{
+    font-family:'OldEnglishCustom', serif;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+/* DESKTOP LINKS */
+.nav-link{
+    color:#fff !important;
+    font-family:'OldEnglishCustom', serif;
+    font-size:18px;
+    position:relative;
+    transition: 0.3s ease;
+}
+
+/* DROPDOWN */
+.vintage-dropdown{
+    background:#fff;
+    border: 1px solid #000;
+    border-radius:0;
+}
+
+.dropdown-item:hover{
+    background:#c9a66b;
+    color:#fff;
+}
+
+/* ========================= */
+/* MOBILE NAV FIX (IMPORTANT) */
+/* ========================= */
+@media (max-width: 991px){
+
+    /* 🚨 THIS IS THE KEY FIX */
+    .navbar-collapse{
+        position: absolute;
+        top: 100%;
+        right: 15px;
+
+        width: 240px;               /* controls dropdown size */
+        background: #fff;
+        padding: 15px;
+        border: 1px solid #000;
+        border-radius: 8px;
+
+        z-index: 2000;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* stack items properly */
+    .navbar-nav{
+        align-items: flex-start;
+    }
+
+    /* spacing */
+    .navbar-nav .nav-item{
+        margin: 8px 0;
+    }
+
+    /* readable text */
+    .nav-link{
+        padding-right: 0;
+        color:#000 !important;
+    }
+}
+
+
+/* DROPDOWN */
+.vintage-dropdown{
+    background:rgb(255, 255, 255);
+    border: 1px solid #000;
+    border-radius:0;
+}
+
+.dropdown-item:hover{
+    background:#c9a66b;
+    color:#fff;
+}
+
+
+
+
+
+.navbar-toggler{
+    border: none;
+    outline: none;
+}
+
+.navbar-dark .navbar-toggler-icon{
+    filter: invert(1);
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    font-family: "Old English Five", serif;
+    padding:30px;
+    color: #fff;
+
+    font-family:'Cinzel', serif;
+
+    position: relative;
+}
+
+/* 👇 THIS replaces <hr> */
+.footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:100vw;   /* 👈 full screen width */
+    height:1px;
+
+    background: var(--line, rgba(255,255,255,0.3));
+}
+
+
+
+#modal-title{
+    font-family: "Old English Five", serif !important;
+    letter-spacing: 1px;
+    font-size: 38px;
+}
+
+#modal-desc{
+    font-family:'OldEnglishCustom', serif;
+    line-height: 1.6;
+    font-size: 15px;
+    opacity: 0.95;
+}
+
+#fs-btn{
+    position:absolute;
+    top:25px;
+    left:35px;
+    font-size:42px;
+    background:transparent;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    z-index:2100;
+}
+
+#fs-btn:hover{
+    transform:scale(1.1);
+}
+
+
+
+#fs-exit-overlay{
+    position:fixed;
+    top:20px;
+    right:20px;
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+
+    font-size:42px;
+    border-radius:50%;
+    cursor:pointer;
+
+    z-index:999999; /* VERY IMPORTANT */
+    backdrop-filter: blur(6px);
+}
+
+/* MOBILE IMPROVEMENT */
+@media (max-width:768px){
+    #fs-exit-overlay{
+        width:55px;
+        height:55px;
+        font-size:26px;
+        top:15px;
+        right:15px;
+    }
+}
+.fs-mode{
+    background:black !important;
+}
+
+/* make image centered like your GOAL */
+.fs-mode .frame-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* floating exit button (VISIBLE ON TOP OF IMAGE) */
+#fs-exit-overlay{
+    position:fixed;
+    top:20px;
+    left:20px;
+
+    width:45px;
+    height:45px;
+
+    background:rgba(0,0,0,0.6);
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    font-size:22px;
+
+    z-index:999999;
+    cursor:pointer;
+
+    backdrop-filter: blur(6px);
+}
+
+
+.floating-music{
+    position:fixed;
+    top:50%;
+    left:-40%;
+
+    font-size:18px;
+    letter-spacing:2px;
+
+    color:rgba(255,255,255,0.25); /* soft only */
+    font-family:'OldEnglishCustom', serif;
+
+    pointer-events:none;
+    z-index:1;
+
+    animation: floatText 18s linear infinite;
+    white-space:nowrap;
+}
+
+/* ANIMATION */
+@keyframes floatText{
+    0%{
+        transform:translateX(0) translateY(-50%);
+        opacity:0;
+    }
+    10%{
+        opacity:0.3;
+    }
+    50%{
+        opacity:0.2;
+    }
+    100%{
+        transform:translateX(220vw) translateY(-50%);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HERO SECTION (NAV + CONTENT + GALLERY)
+========================= -->
+<header id="home" class="hero-section">
+
+    <!-- ================= NAVIGATION ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav">
+    <div class="container">
+
+        <!-- BRAND -->
+        <a class="navbar-brand brand-title" href="index.html">
+            Spanish Colonial Period
+        </a>
+
+        <!-- TOGGLER (MOBILE) -->
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- NAV MENU -->
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+
+            <ul class="navbar-nav align-items-lg-center gap-lg-4">
+
+                <!-- HOME -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+
+                <!-- ABOUT -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#about">About Us</a>
+                </li>
+
+                <!-- DROPDOWN -->
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Category
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end vintage-dropdown">
+                        <li><a class="dropdown-item" href="music.html">Music</a></li>
+                        <li><a class="dropdown-item" href="food.html">Food</a></li>
+                        <li><a class="dropdown-item" href="fashion.html">Fashion</a></li>
+                        <li><a class="dropdown-item" href="culture.html">Culture</a></li>
+                    </ul>
+
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+    <!-- ================= HERO TEXT CONTENT ================= -->
+    <div class="hero-center">
+
+        <h1>Culture - Cultura</h1>
+
+        <p>
+The Spanish Colonial Period greatly influenced Filipino culture through architecture, religion, traditions, language, and social customs that are still practiced today. Celebrations such as fiestas, religious processions, and family-centered values reflect the lasting impact of Spanish heritage on everyday life. These cultural influences blended with native traditions, creating the unique identity of the Filipino people.         </p>
+
+
+                <div class="gallery">
+
+            <!-- CARD 1 -->
+            <div class="card" onclick="openModal(0)">
+                <img src="1-Culture.jpeg">
+                <div class="overlay">
+<p>This photo shows a traditional dance called “Pandangguhan,” performed during the feast of Sta. Martha in Pateros, a competition between the 10 baranggays, which was held last February 7, 2026. This photo was captured by Erin Salonga at Pateros Church. The festival happens every second week of February and celebrates culture, faith, and community through music and dance.</p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="card" onclick="openModal(1)">
+                <img src="2-Culture.jpeg">
+
+                <div class="overlay">
+                    <p>Step back in time and experience the captivating beauty of old Philippines at Las Casas Filipinas de Acuzar, where a church and bell tower are reflected in the river during the late afternoon in Bagac, Bataan. This heritage site showcases original Spanish-Filipino colonial structures, captured by Divine Ginez on March 21, 2026.</p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="card" onclick="openModal(2)">
+                <img src="3-Culture.jpeg">
+                <div class="overlay">
+                    <p>A kalesa driver guides a horse-drawn carriage along Calle Crisologo in Vigan on April 6, 2026, passing well-preserved Spanish colonial-era houses. The traditional transport continues to operate in the city’s UNESCO listed historic district.</p>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="card" onclick="openModal(3)">
+                <img src="4-Culture.jpeg">
+                <div class="overlay">
+                    <p>This image, taken by Marie Diane Acma on April 8, 2026, shows a remarkable image in Manila's historic walled city of Intramuros, which was founded in 1571 during the Spanish colonial era. At its center stands a horse in full harness as part of a traditional kalesa beside a modern car, with the colonial‑style building and paved street in the backdrop emphasizing the enduring blend of Spanish‑era heritage and contemporary urban development.</p>
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="card" onclick="openModal(4)">
+                <img src="5-Culture.jpeg">
+                <div class="overlay">
+                    <p>Admire the grandeur of the University of Santo Tomas Main Building, a historic structure that stands as a testament to the university’s rich academic heritage and resilience through time. Known as one of the oldest university buildings in the Philippines, it has witnessed significant historical events, including serving as an internment camp during World War II. As the central landmark of the oldest existing university in Asia, it reflects a blend of neoclassical architecture and enduring Thomasian tradition.</p>
+                </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="card" onclick="openModal(5)">
+                <img src="6-Culture.jpeg">
+                <div class="overlay">
+                    <p>Standing in the historic heart of Intramuros, Manila, the Palacio del Gobernador rises on the site of the former Spanish colonial governor-general’s residence. Destroyed during World War II and rebuilt in 1976, it now serves as a government center for administrative and public service under government institutions. The building features formal architecture and arched entrances. it was captured by Danell Caong on March 31, 2026.</p>
+                </div>
+            </div>
+
+            <!-- CARD 7 -->
+            <div class="card" onclick="openModal(6)">
+                <img src="7-Culture.jpeg">
+                <div class="overlay">
+                    <p>A powerful moment from the annual Senakulo 2026 in Bagumbayan, Taguig City on April 4, 2026 brings to life a traditional Holy Week reenactment of the encounter between Veronica and Jesus on His way to Calvary, reflecting faith, sacrifice, and devotion deeply rooted in Filipino culture. Captured by Eirine Sixto, the image shows Veronica compassionately wiping the face of Jesus with her veil as He carries the cross.</p>
+                </div>
+            </div>
+
+            <!-- CARD 8 -->
+            <div class="card" onclick="openModal(7)">
+                <img src="8-Culture.jpeg">
+                <div class="overlay">
+                    <p>Witness a graceful cultural performance by the La Manila Dance Ambassador and Rondalla as they showcase Pangdanggo sa Ilaw during the Escolta Art Exchange event, a celebration of heritage and creativity in Manila’s historic district. This traditional dance, performed with lit candles, reflects Spanish colonial influence and Filipino artistry through music, movement, and storytelling. Captured by Bea Macadangdang on March 21, 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+</header>
+<div class="floating-music">
+    BSTM-M602 | Music Section
+</div>
+
+
+<!-- =========================
+     MODAL (IMAGE VIEWER)
+========================= -->
+<div class="modal" id="modal">
+    <span class="close" onclick="closeModal()">×</span>
+<button id="fs-btn" onclick="toggleFullscreen()">
+    ⛶
+</button>
+    <div class="modal-box" id="modal-box">
+
+        <!-- IMAGE SIDE -->
+        <div class="frame-container">
+            <img id="frame-img" class="frame">
+            <img id="modal-img" class="framed-image">
+        </div>
+
+        <!-- TEXT SIDE -->
+        <div class="modal-info">
+            <h2 id="modal-title">SAmple titl sadasd</h2>
+            <p id="modal-desc">dasdasda</p>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =========================
+     FOOTER (SEPARATE SECTION + OWN BACKGROUND)
+========================= -->
+<footer class="footer">
+    © 2026 Spanish Colonial Exhibit | Designed by Divine Ginez
+</footer>
+
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const images = [
+
+{
+    src: "1-Culture.jpeg",
+    captions: [
+        {
+            title: "Informational Caption:",
+            desc: "This photo shows a traditional dance called “Pandangguhan,” performed during the feast of Sta. Martha in Pateros, a competition between the 10 barangays, which was held last February 7, 2026. This photo was captured by Erin Salonga at Pateros Church. The festival happens every second week of February and celebrates culture, faith, and community through music and dance."
+        },
+        {
+            title: "Narrative Caption:",
+            desc: "The dancers move together in rhythm as they perform the traditional “Pandangguhan,” while one carefully carries the image of Sta. Martha at the center of the group. Surrounded by music and a watching crowd, they celebrate the feast with joyful steps, showing their faith and culture."
+        }
+    ]
+},
+
+{
+    src: "2-Culture.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Step back in time and experience the captivating beauty of old Philippines at Las Casas Filipinas de Acuzar, where a church and bell tower are reflected in the river during the late afternoon in Bagac, Bataan. This heritage site showcases original Spanish-Filipino colonial structures, captured by Divine Ginez on March 21, 2026."
+        },
+        {
+            title: "Interpretative Caption:",
+            desc: "The reflection of the church in the river reminds us that the past never truly fades; it lives on in memories, traditions, and the stories we continue to carry."
+        }
+    ]
+},
+
+{
+    src: "3-Culture.jpeg",
+    captions: [
+        {
+            title: "Informational Caption:",
+            desc: "A kalesa driver guides a horse-drawn carriage along Calle Crisologo in Vigan on April 6, 2026, passing well-preserved Spanish colonial-era houses. The traditional transport continues to operate in the city’s UNESCO-listed historic district."
+        },
+        {
+            title: "Interpretative Caption:",
+            desc: "In Vigan, the kalesa represents more than transport. It reflects a living connection between the past and present."
+        }
+    ]
+},
+
+{
+    src: "4-Culture.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "This image, taken by Marie Diane Acma on April 8, 2026, shows a remarkable scene in Manila's historic walled city of Intramuros, founded in 1571 during the Spanish colonial era. At its center stands a horse in full harness as part of a traditional kalesa beside a modern car, with a colonial-style building and paved street in the background emphasizing the enduring blend of Spanish-era heritage and contemporary urban development."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "The horse in full harness symbolizes the timeless appeal of the traditional kalesa while standing next to a contemporary car that reflects Manila's development, creating a deep feeling of nostalgia and reflection. We are reminded of Intramuros' ancient spirit by the colonial-style building, which adds to the Spanish-era atmosphere with its wooden doors and intricate details. Together, these elements evoke pride, longing, and admiration, showing how modernity and tradition still coexist in the heart of the city."
+        }
+    ]
+},
+
+{
+    src: "5-Culture.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Admire the grandeur of the University of Santo Tomas Main Building, a historic structure that stands as a testament to the university’s rich academic heritage and resilience through time. Known as one of the oldest university buildings in the Philippines, it has witnessed significant historical events, including serving as an internment camp during World War II. As the central landmark of the oldest existing university in Asia, it reflects a blend of neoclassical architecture and enduring Thomasian tradition. Captured by Kent Alonzo on April 5, 2026 at the University of Santo Tomas, Manila, this image highlights the building’s cultural and historical significance in Philippine education."
+        },
+        {
+            title: "Narrative Caption:",
+            desc: "Despite the stillness of the day and the grey skies, the historic site stands tall. The monument reflects a rich heritage and the continued cultural and religious practices of communities across generations."
+        }
+    ]
+},
+
+{
+    src: "6-Culture.jpeg",
+    captions: [
+        {
+            title: "Informational Caption:",
+            desc: "Standing in the historic heart of Intramuros, Manila, the Palacio del Gobernador rises on the site of the former Spanish colonial governor-general’s residence. Destroyed during World War II and rebuilt in 1976, it now serves as a government center for administrative and public service. The building features formal architecture and arched entrances. It was captured by Danell Caong on March 31, 2026."
+        },
+        {
+            title: "Narrative Caption:",
+            desc: "Once marked by war and time, the Palacio del Gobernador in Intramuros now stands rebuilt, continuing its role in serving the public through government offices."
+        }
+    ]
+},
+
+{
+    src: "7-Culture.jpeg",
+    captions: [
+        {
+            title: "Informational Caption:",
+            desc: "A powerful moment from the annual Senakulo 2026 in Bagumbayan, Taguig City on April 4, 2026 brings to life a traditional Holy Week reenactment of the encounter between Veronica and Jesus on His way to Calvary, reflecting faith, sacrifice, and devotion deeply rooted in Filipino culture. Captured by Eirine Sixto, the image shows Veronica compassionately wiping the face of Jesus with her veil as He carries the cross."
+        },
+        {
+            title: "Narrative Caption:",
+            desc: "As Jesus carries the heavy cross on His way to Calvary, Veronica steps forward from the crowd and gently wipes His face with her veil, offering a moment of compassion amid suffering. This scene from Senakulo 2026 captures not only a biblical story but also the enduring faith and devotion of the community that continues to bring it to life."
+        }
+    ]
+},
+
+{
+    src: "8-Culture.jpeg",
+    captions: [
+        {
+            title: "Informational Caption:",
+            desc: "Witness a graceful cultural performance by the La Manila Dance Ambassador and Rondalla as they showcase Pangdanggo sa Ilaw during the Escolta Art Exchange event, a celebration of heritage and creativity in Manila’s historic district. This traditional dance, performed with lit candles, reflects Spanish colonial influence and Filipino artistry through music, movement, and storytelling. Captured by Bea Macadangdang on March 21, 2026."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "Through difficult balance and joyful grace, this dance embodies the vibrant spirit and enduring traditions of Filipino culture."
+        }
+    ]
+}
+
+];
+
+
+let current = 0;
+
+// OPEN MODAL
+function openModal(index){
+
+    const modal = document.getElementById('modal');
+    const box = document.getElementById('modal-box');
+    const data = images[index];
+
+    const img = document.getElementById('modal-img');
+    const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
+
+    img.src = data.src;
+
+    // detect orientation from filename
+    const name = data.src.toLowerCase();
+
+// detect orientation using index
+box.classList.remove("horizontal","vertical");
+
+const horizontalIndexes = [2, 3, 5, 6, 7]; // zero-based index
+
+if(horizontalIndexes.includes(index)){
+    box.classList.add("horizontal");
+    frame.src = "Horizontal(FRAME).png";
+} else {
+    box.classList.add("vertical");
+    frame.src = "Vertical(FRAME).png";
+}
+
+    const titleEl = document.getElementById('modal-title');
+    const descEl = document.getElementById('modal-desc');
+
+    titleEl.innerHTML = "";
+    descEl.innerHTML = "";
+
+data.captions.forEach(item => {
+
+    descEl.innerHTML += `
+        <div style="margin-bottom:25px;">
+            <div style="
+                font-family: 'Old English Five', serif;
+                font-weight: bold;
+                font-size: 18px;
+                margin-bottom:6px;
+                color:#000;
+            ">
+                ${item.title}
+            </div>
+
+            <div style="
+                font-family: 'OldEnglishCustom', serif;
+                font-size: 15px;
+                line-height:1.6;
+                color:#000;
+            ">
+                ${item.desc}
+            </div>
+        </div>
+    `;
+});
+
+    modal.style.display = "flex";
+}
+
+// CLOSE MODAL
+function closeModal(){
+    document.getElementById('modal').style.display = "none";
+}
+
+// CLICK OUTSIDE CLOSE
+document.getElementById('modal').addEventListener("click", function(e){
+    if(e.target.id === "modal"){
+        closeModal();
+    }
+});
+
+
+
+let isFullscreen = false;
+
+// TOGGLE FULLSCREEN (IMAGE ONLY)
+function toggleFullscreen(){
+
+    const img = document.getElementById("modal-img");
+    const btn = document.getElementById("fs-btn");
+
+    if(!isFullscreen){
+
+        // ENTER FULLSCREEN (IMAGE ONLY)
+        if(img.requestFullscreen){
+            img.requestFullscreen();
+        }
+
+        isFullscreen = true;
+        btn.innerHTML = "⤢";
+
+        showFullscreenAlert();
+        showFullscreenExitOverlay();
+
+    } else {
+
+        exitFullscreenMode();
+    }
+}
+
+
+// EXIT FULLSCREEN (CLEAN HANDLER)
+function exitFullscreenMode(){
+
+    if(document.exitFullscreen){
+        document.exitFullscreen();
+    }
+
+    isFullscreen = false;
+
+    const btn = document.getElementById("fs-btn");
+    if(btn){
+        btn.innerHTML = "⛶";
+    }
+
+    // remove overlay if exists
+    const overlay = document.getElementById("fs-exit-overlay");
+    if(overlay){
+        overlay.remove();
+    }
+}
+
+
+// CENTER ALERT MESSAGE
+function showFullscreenAlert(){
+
+    const alertBox = document.getElementById("fs-alert");
+    if(!alertBox) return;
+
+    alertBox.style.opacity = "1";
+
+    setTimeout(() => {
+        alertBox.style.opacity = "0";
+    }, 2500);
+}
+
+
+// MOBILE + FULLSCREEN EXIT BUTTON (VISIBLE ON IMAGE)
+function showFullscreenExitOverlay(){
+
+    // avoid duplicate overlay
+    if(document.getElementById("fs-exit-overlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "fs-exit-overlay";
+    overlay.innerHTML = "✕";
+
+    overlay.onclick = exitFullscreenMode;
+
+    document.body.appendChild(overlay);
+}
+
+
+// ESC KEY SUPPORT (DESKTOP)
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+        exitFullscreenMode();
+    }
+});
+
+
+// SAFETY: RESET STATE IF USER EXITS VIA BROWSER BUTTON
+document.addEventListener("fullscreenchange", function(){
+    if(!document.fullscreenElement){
+        isFullscreen = false;
+
+        const btn = document.getElementById("fs-btn");
+        if(btn){
+            btn.innerHTML = "⛶";
+        }
+
+        const overlay = document.getElementById("fs-exit-overlay");
+        if(overlay){
+            overlay.remove();
+        }
+    }
+});
+</script>
+
+
+
+</body>
+</html>
