@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BSTM0602</title>
+<link rel="icon" type="image/png" href="Logo.png">
+
+<!-- Bootstrap (needed for your nav to work) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Your original CSS -->
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================
+   GLOBAL BACKGROUND (FIXED FULL PAGE)
+========================= */
+
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url("bgMUSIC.png") center/cover no-repeat;
+
+    background-attachment: fixed;
+}
+.hero-section{
+    min-height:auto;
+    padding-bottom:60px;
+}
+
+
+@font-face {
+    font-family: 'OldEnglish';
+    src: url('Contents/OldEnglishFive.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+    
+/* =========================
+   CENTER CONTENT (FIXED)
+========================= */
+.hero-center{
+    position: relative;
+    text-align:center;
+    color:#fff;
+    width:100%;
+    max-width:1300px;
+
+    margin:120px auto 0;
+    padding:0 20px; /* 👈 THIS FIXES EDGE ISSUE */
+}
+
+.gallery{
+    margin-bottom: 80px;
+}
+.hero-center h1{
+    font-family: "Old English Five", serif !important;
+    font-size:63px;
+    line-height:1.2;
+    margin:0 auto;
+}
+
+.hero-center p{
+    font-size:32px;
+    margin-top:15px;
+        max-width:2000px;
+
+            font-family:'OldEnglishCustom', serif;
+
+}
+/* TITLE */
+.hero-center h1{
+    font-size:clamp(28px, 5vw, 60px);
+    margin:20px auto;
+        font-family: "Old English Five", serif !important;
+
+}
+
+.hero-center p{
+    font-size:clamp(14px, 2.5vw, 16px);
+    line-height:1.6;
+            font-family:'OldEnglishCustom', serif;
+    max-width:2000px;
+    margin:0 auto 30px;
+}
+@media (max-width:576px){
+
+    .hero-center{
+        margin-top:100px;
+    }
+
+    .gallery{
+        gap:20px;
+    }
+}
+/* =========================
+   GALLERY (FLOAT STYLE)
+========================= */
+.gallery{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:25px;
+
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 20px; /* 👈 SPACE FROM EDGES */
+}
+
+/* make it responsive */
+@media (max-width: 992px){
+    .gallery{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px){
+    .gallery{
+        grid-template-columns: 1fr; /* 👈 1 IMAGE PER ROW */
+    }
+}
+
+/* CARD */
+.card{
+    width:100%;
+        cursor: pointer;
+
+    aspect-ratio:3/4; /* keeps same shape */
+    position:relative;
+    overflow:hidden;
+}
+
+/* IMAGE */
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+/* DARK OVERLAY */
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0, 0, 0, 0.329);
+    opacity:0;
+    transition:.3s;
+}
+
+.card:hover::after{
+    opacity:1;
+}
+
+.card:hover img{
+    transform:scale(1.1);
+}
+
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:15px;
+
+    font-weight:700;
+    font-family:'OldEnglishCustom', serif;
+
+    color:#fff;
+
+    /* 🔥 STRONG VISIBILITY FIX */
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+
+    /* ✨ FLOAT EFFECT */
+    transform: translateY(100%) scale(0.98);
+    opacity: 0;
+
+    /* ✨ HIGHLIGHT EFFECT */
+    text-shadow:
+        0 2px 6px rgba(0,0,0,0.9),
+        0 0 10px rgba(255,255,255,0.35);
+
+    transition: all .35s ease;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.card:hover .overlay{
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+
+/* MODAL BACKGROUND */
+.modal{
+    display:none; /* hidden by default */
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    z-index:2000;
+
+    align-items:center;
+    justify-content:center;
+}
+
+/* MODAL BOX (FIXED SIZE) */
+.modal-box{
+    display:flex;
+    gap:20px;
+
+    width:90%;
+    max-width:1100px;
+    height:600px;
+
+    background:rgb(255, 251, 202);
+    border-radius:12px;
+    padding:25px;
+
+    overflow:hidden; /* IMPORTANT */
+}
+
+/* IMAGE SIDE */
+.modal-image-wrapper{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* FRAME (IMPORTANT) */
+.image-frame{
+    padding:12px;
+    border:10px solid #c9a66b;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    max-width:100%;
+    max-height:100%;
+}
+
+
+.frame-container{
+    position:relative;
+    flex:1; /* IMPORTANT */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* FRAME IMAGE (TOP LAYER) */
+.frame{
+    position:absolute;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+}
+
+/* ACTUAL IMAGE (INSIDE FRAME) */
+.framed-image{
+    position:relative;
+    max-width:70%;
+    max-height:70%;
+    object-fit:contain;
+}
+
+/* OPTIONAL: make it feel realistic */
+.frame{
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+
+
+@media (max-width:768px){
+
+    .modal{
+        padding:20px; /* space from screen edges */
+    }
+
+    .modal-box{
+        flex-direction:column;
+        width:100%;
+        height:auto;
+        max-height:90vh;
+
+        padding:15px;
+        gap:15px;
+    }
+
+    /* CENTER EVERYTHING */
+    .frame-container{
+        justify-content:center;
+        align-items:center;
+        min-height:250px;
+    }
+
+    /* CONTROL FRAME SIZE ON MOBILE */
+    .frame{
+        max-width:90%;
+        max-height:250px;
+    }
+
+    .framed-image{
+        max-width:60%;
+        max-height:200px;
+    }
+
+    /* TEXT SECTION */
+    .modal-info{
+        width:100%;
+        max-height:200px;
+        overflow-y:auto;
+        text-align:center;
+        padding:10px;
+    }
+
+    .modal-info p{
+        text-align:justify; /* keep your requirement */
+    }
+}
+@media (max-width:480px){
+
+    .frame{
+        max-height:200px;
+    }
+
+    .framed-image{
+        max-height:150px;
+    }
+
+    .modal-info{
+        max-height:180px;
+    }
+}
+
+
+/* IMAGE */
+.image-frame img{
+    max-width:100%;
+    max-height:450px;
+    object-fit:contain;
+}
+
+/* TEXT SIDE */
+.modal-info{
+    flex:1; /* IMPORTANT */
+    overflow-y:auto;
+    padding:10px;
+}
+
+.modal-info h2{
+    margin-bottom:15px;
+}
+
+.modal-info p{
+    text-align:justify;
+    line-height:1.6;
+}
+
+/* CLOSE BUTTON */
+.close{
+    position:absolute;
+    top:25px;
+    right:35px;
+    font-size:30px;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* =========================
+   ORIENTATION HANDLING
+========================= */
+
+/* HORIZONTAL */
+.modal-box.horizontal .image-frame img{
+    max-height:350px;
+}
+
+/* VERTICAL */
+.modal-box.vertical .image-frame img{
+    max-height:500px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width:768px){
+
+    .modal-box{
+        flex-direction:column;
+        height:auto;
+        max-height:90vh;
+        overflow-y:auto;
+    }
+
+    .image-frame img{
+        max-height:300px;
+    }
+}
+
+
+
+/* NAV BAR BASE */
+.custom-nav{
+    background-color: #4d431b33;
+    padding-top:18px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    transition: background-color 0.4s ease;
+}
+
+/* SCROLL STATE */
+.custom-nav.scrolled{
+    background:#c9a66b;
+}
+
+/* HERO OFFSET */
+.hero-section{
+    padding-top: 80px;
+}
+
+/* BRAND */
+.brand-title{
+    font-family:'OldEnglishCustom', serif;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+/* DESKTOP LINKS */
+.nav-link{
+    color:#fff !important;
+    font-family:'OldEnglishCustom', serif;
+    font-size:18px;
+    position:relative;
+    transition: 0.3s ease;
+}
+
+/* DROPDOWN */
+.vintage-dropdown{
+    background:#fff;
+    border: 1px solid #000;
+    border-radius:0;
+}
+
+.dropdown-item:hover{
+    background:#c9a66b;
+    color:#fff;
+}
+
+/* ========================= */
+/* MOBILE NAV FIX (IMPORTANT) */
+/* ========================= */
+@media (max-width: 991px){
+
+    /* 🚨 THIS IS THE KEY FIX */
+    .navbar-collapse{
+        position: absolute;
+        top: 100%;
+        right: 15px;
+
+        width: 240px;               /* controls dropdown size */
+        background: #fff;
+        padding: 15px;
+        border: 1px solid #000;
+        border-radius: 8px;
+
+        z-index: 2000;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* stack items properly */
+    .navbar-nav{
+        align-items: flex-start;
+    }
+
+    /* spacing */
+    .navbar-nav .nav-item{
+        margin: 8px 0;
+    }
+
+    /* readable text */
+    .nav-link{
+        padding-right: 0;
+        color:#000 !important;
+    }
+}
+
+
+/* DROPDOWN */
+.vintage-dropdown{
+    background:rgb(255, 255, 255);
+    border: 1px solid #000;
+    border-radius:0;
+}
+
+.dropdown-item:hover{
+    background:#c9a66b;
+    color:#fff;
+}
+
+
+
+
+
+.navbar-toggler{
+    border: none;
+    outline: none;
+}
+
+.navbar-dark .navbar-toggler-icon{
+    filter: invert(1);
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    font-family: "Old English Five", serif;
+    padding:30px;
+    color: #fff;
+
+    font-family:'Cinzel', serif;
+
+    position: relative;
+}
+
+/* 👇 THIS replaces <hr> */
+.footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:100vw;   /* 👈 full screen width */
+    height:1px;
+
+    background: var(--line, rgba(255,255,255,0.3));
+}
+
+
+
+#modal-title{
+    font-family: "Old English Five", serif !important;
+    letter-spacing: 1px;
+    font-size: 38px;
+}
+
+#modal-desc{
+    font-family:'OldEnglishCustom', serif;
+    line-height: 1.6;
+    font-size: 15px;
+    opacity: 0.95;
+}
+
+#fs-btn{
+    position:absolute;
+    top:25px;
+    left:35px;
+    font-size:42px;
+    background:transparent;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    z-index:2100;
+}
+
+#fs-btn:hover{
+    transform:scale(1.1);
+}
+
+
+
+#fs-exit-overlay{
+    position:fixed;
+    top:20px;
+    right:20px;
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+
+    font-size:42px;
+    border-radius:50%;
+    cursor:pointer;
+
+    z-index:999999; /* VERY IMPORTANT */
+    backdrop-filter: blur(6px);
+}
+
+/* MOBILE IMPROVEMENT */
+@media (max-width:768px){
+    #fs-exit-overlay{
+        width:55px;
+        height:55px;
+        font-size:26px;
+        top:15px;
+        right:15px;
+    }
+}
+.fs-mode{
+    background:black !important;
+}
+
+/* make image centered like your GOAL */
+.fs-mode .frame-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* floating exit button (VISIBLE ON TOP OF IMAGE) */
+#fs-exit-overlay{
+    position:fixed;
+    top:20px;
+    left:20px;
+
+    width:45px;
+    height:45px;
+
+    background:rgba(0,0,0,0.6);
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    font-size:22px;
+
+    z-index:999999;
+    cursor:pointer;
+
+    backdrop-filter: blur(6px);
+}
+
+
+.floating-music{
+    position:fixed;
+    top:50%;
+    left:-40%;
+
+    font-size:18px;
+    letter-spacing:2px;
+
+    color:rgba(255,255,255,0.25); /* soft only */
+    font-family:'OldEnglishCustom', serif;
+
+    pointer-events:none;
+    z-index:1;
+
+    animation: floatText 18s linear infinite;
+    white-space:nowrap;
+}
+
+/* ANIMATION */
+@keyframes floatText{
+    0%{
+        transform:translateX(0) translateY(-50%);
+        opacity:0;
+    }
+    10%{
+        opacity:0.3;
+    }
+    50%{
+        opacity:0.2;
+    }
+    100%{
+        transform:translateX(220vw) translateY(-50%);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HERO SECTION (NAV + CONTENT + GALLERY)
+========================= -->
+<header id="home" class="hero-section">
+
+    <!-- ================= NAVIGATION ================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav">
+    <div class="container">
+
+        <!-- BRAND -->
+        <a class="navbar-brand brand-title" href="index.html">
+            Spanish Colonial Period
+        </a>
+
+        <!-- TOGGLER (MOBILE) -->
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- NAV MENU -->
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+
+            <ul class="navbar-nav align-items-lg-center gap-lg-4">
+
+                <!-- HOME -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+
+                <!-- ABOUT -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#about">About Us</a>
+                </li>
+
+                <!-- DROPDOWN -->
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Category
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end vintage-dropdown">
+                        <li><a class="dropdown-item" href="music.html">Music</a></li>
+                        <li><a class="dropdown-item" href="food.html">Food</a></li>
+                        <li><a class="dropdown-item" href="fashion.html">Fashion</a></li>
+                        <li><a class="dropdown-item" href="culture.html">Culture</a></li>
+                    </ul>
+
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+    <!-- ================= HERO TEXT CONTENT ================= -->
+    <div class="hero-center">
+
+        <h1>Music – Musica</h1>
+
+        <p>
+            The Spanish Colonial Period greatly influenced Filipino music by introducing new instruments, melodies, and religious songs. Traditions such as the harana, rondalla, and church hymns reflect the blending of Spanish styles with Filipino creativity. These musical influences became part of the country’s cultural identity and continue to be heard in modern Filipino music today.
+        </p>
+
+        <!-- ================= IMAGE GALLERY ================= -->
+        <div class="gallery">
+
+            <!-- CARD 1 -->
+            <div class="card" onclick="openModal(0)">
+                <img src="Music(HORIZONTAL)1.jpeg">
+                <div class="overlay">
+                    <p>Experience a heartfelt moment as a man serenades his wife with a song in the romantic surroundings of Intramuros, Manila. This emotional gesture reflects the Filipino tradition of harana, which was influenced by Spanish colonial culture and emphasizes love, music, and courtship. Captured by Brylle Sarong on March 30, 2026 in Fort Santiago, Intramuros this scene beautifully highlights the timeless romance and heritage preserved within the historic walls of Intramuros.</p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="card" onclick="openModal(1)">
+                <img src="Music(HORIZONTAL)2.jpeg">
+                <div class="overlay">
+                    <p>Witness the cultural harmony of Filipino heritage through a man playing the bandurria, a traditional string instrument often used in Spanish-influenced folk music. Introduced during the Spanish colonial period, the bandurria became an essential part of rondalla ensembles in the Philippines, symbolizing both artistry and cultural fusion. Captured by Arles Clutario on April 4, 2026, at Taguig City, this moment reflects the enduring musical legacy shaped by Spanish influence.</p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="card" onclick="openModal(2)">
+                <img src="Music(HORIZONTAL)3.jpeg">
+                <div class="overlay">
+                    <p>Capture the soulful artistry of a man playing the guitar, an instrument deeply rooted in both Spanish influence and Filipino musical tradition. Introduced during the Spanish colonial period, the guitar became a staple in Filipino homes and folk music, often accompanying storytelling and heartfelt performances. Captured by Teover Fugen on April 12, 2026 in Santa Ana, Taguig City, this image reflects the enduring connection between music, culture, and history.</p>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="card" onclick="openModal(3)">
+                <img src="Music(vertical)1.jpeg">
+                <div class="overlay">
+                    <p>A wooden harp is displayed inside a heritage-style room with capiz windows and antique furniture at a historical house museum in the Casa Manila, Philippines. Captured by Gwen Almonte on March 31, 2026. The instrument represents the elegance of music during the Spanish Colonial period.</p>
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="card" onclick="openModal(4)">
+                <img src="Music(vertical)2.jpeg">
+                <div class="overlay">
+                    <p>Grace and tradition come together as a woman plays the harp, an elegant string instrument that carries deep roots in Spanish musical heritage. Introduced during the colonial period, the harp became associated with classical and sacred music, often symbolizing refinement and cultural artistry in Filipino society. Captured by Bhea Suizo on March 29, 2026 in Casa Recuerdos de Taal, Batangas this image reflects the enduring influence of Spanish culture on music and expression.</p>
+                </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="card" onclick="openModal(5)">
+                <img src="Music(VERTICAL)3.jpeg">
+                <div class="overlay">
+                    <p>Immerse in the elegance of music as hands glide across the piano keys, producing a timeless melody that reflects both emotion and artistry. Introduced to the Philippines during the Spanish colonial period, the piano became a symbol of refinement and was commonly found in homes, churches, and social gatherings. Captured by Jerome Vanzuela on April 22, 2026 in Casa Manila, Intramuros this image showcases the enduring influence of Western</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</header>
+<div class="floating-music">
+    BSTM-M602 | Music Section
+</div>
+
+
+<!-- =========================
+     MODAL (IMAGE VIEWER)
+========================= -->
+<div class="modal" id="modal">
+    <span class="close" onclick="closeModal()">×</span>
+<button id="fs-btn" onclick="toggleFullscreen()">
+    ⛶
+</button>
+    <div class="modal-box" id="modal-box">
+
+        <!-- IMAGE SIDE -->
+        <div class="frame-container">
+            <img id="frame-img" class="frame">
+            <img id="modal-img" class="framed-image">
+        </div>
+
+        <!-- TEXT SIDE -->
+        <div class="modal-info">
+            <h2 id="modal-title">SAmple titl sadasd</h2>
+            <p id="modal-desc">dasdasda</p>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =========================
+     FOOTER (SEPARATE SECTION + OWN BACKGROUND)
+========================= -->
+<footer class="footer">
+    © 2026 Spanish Colonial Exhibit | Designed by Divine Ginez
+</footer>
+
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const images = [
+{
+    src: "Music(HORIZONTAL)1.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Experience a heartfelt moment as a man serenades his wife with a song in the romantic surroundings of Intramuros, Manila. This emotional gesture reflects the Filipino tradition of harana, which was influenced by Spanish colonial culture and emphasizes love, music, and courtship. Captured by Brylle Sarang on March 30, 2026 in Fort Santiago, Intramuros this scene beautifully highlights the timeless romance and heritage preserved within the historic walls of Intramuros."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "As he sings and plays the guitar, every note becomes a confession of love meant only for her. The melody wraps around them like a quiet promise, turning an ordinary moment into something unforgettable. In her gaze and in his song, love speaks louder than words ever could."
+        }
+    ]
+},
+
+{
+    src: "Music(HORIZONTAL)2.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Witness the cultural harmony of Filipino heritage through a man playing the bandurria, a traditional string instrument often used in Spanish-influenced folk music. Introduced during the Spanish colonial period, the bandurria became an essential part of rondalla ensembles in the Philippines, symbolizing both artistry and cultural fusion. Captured by Arles Clutario on April 4, 2026, at Taguig City, this moment reflects the enduring musical legacy shaped by Spanish influence."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "With every note from the bandurria, he pours out stories that words can no longer hold. The melody carries echoes of love, longing, and memories of a time that still lives in the heart. In his hands, music becomes emotion—softly touching every soul that listens."
+        }
+    ]
+},
+
+{
+    src: "Music(HORIZONTAL)3.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Capture the soulful artistry of a man playing the guitar, an instrument deeply rooted in both Spanish influence and Filipino musical tradition. Introduced during the Spanish colonial period, the guitar became a staple in Filipino homes and folk music, often accompanying storytelling and heartfelt performances. Captured by Teover Fugen on April 12, 2026 in Santa Ana, Taguig City, this image reflects the enduring connection between music, culture, and history."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "With every strum of the guitar, he releases emotions hidden deep within his heart. Each melody speaks of love, pain, hope, and memories too powerful for words alone. In that moment, the music becomes his voice and the song becomes his soul."
+        }
+    ]
+},
+
+{
+    src: "Music(vertical)1.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "A wooden harp is displayed inside a heritage-style room with capiz windows and antique furniture at a historical house museum in Casa Manila, Philippines. Captured by Gwen Almonte on March 31, 2026. The instrument represents the elegance of music during the Spanish Colonial period."
+        },
+        {
+            title: "Interpretative Caption:",
+            desc: "The silent harp reminds viewers that music can preserve history even through time."
+        }
+    ]
+},
+
+{
+    src: "Music(vertical)2.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Grace and tradition come together as a woman plays the harp, an elegant string instrument that carries deep roots in Spanish musical heritage. Introduced during the colonial period, the harp became associated with classical and sacred music, often symbolizing refinement and cultural artistry in Filipino society. Captured by Bhea Suizo on March 29, 2026 in Casa Recuerdos de Taal, Batangas this image reflects the enduring influence of Spanish culture on music and expression."
+        },
+        {
+            title: "Interpretative Caption:",
+            desc: "Amidst the silence of a past time, her hands float above the harp strings like letters yet to be written. History does not stand still here—it sings, moves, and lives through every note."
+        }
+    ]
+},
+
+{
+    src: "Music(VERTICAL)3.jpeg",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Immerse in the elegance of music as hands glide across the piano keys, producing a timeless melody that reflects both emotion and artistry. Introduced to the Philippines during the Spanish colonial period, the piano became a symbol of refinement and was commonly found in homes, churches, and social gatherings. Captured by Jerome Vanzuela on April 22, 2026 in Casa Manila, Intramuros this image showcases the enduring influence of Western musical tradition."
+        },
+        {
+            title: "Descriptive Caption:",
+            desc: "A beautifully crafted piano stands in quiet elegance, its polished keys and timeless design reflecting both artistry and tradition. Each detail captures the charm of classical music and refined craftsmanship."
+        }
+    ]
+}
+];
+
+let current = 0;
+
+// OPEN MODAL
+function openModal(index){
+
+    const modal = document.getElementById('modal');
+    const box = document.getElementById('modal-box');
+    const data = images[index];
+
+    const img = document.getElementById('modal-img');
+    const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
+
+    img.src = data.src;
+
+    // detect orientation from filename
+    const name = data.src.toLowerCase();
+
+    box.classList.remove("horizontal","vertical");
+
+    if(name.includes("vertical")){
+        box.classList.add("vertical");
+        frame.src = "Vertical(FRAME).png";
+    } else {
+        box.classList.add("horizontal");
+        frame.src = "Horizontal(FRAME).png";
+    }
+
+    const titleEl = document.getElementById('modal-title');
+    const descEl = document.getElementById('modal-desc');
+
+    titleEl.innerHTML = "";
+    descEl.innerHTML = "";
+
+data.captions.forEach(item => {
+
+    descEl.innerHTML += `
+        <div style="margin-bottom:25px;">
+            <div style="
+                font-family: 'Old English Five', serif;
+                font-weight: bold;
+                font-size: 18px;
+                margin-bottom:6px;
+                color:#000;
+            ">
+                ${item.title}
+            </div>
+
+            <div style="
+                font-family: 'OldEnglishCustom', serif;
+                font-size: 15px;
+                line-height:1.6;
+                color:#000;
+            ">
+                ${item.desc}
+            </div>
+        </div>
+    `;
+});
+
+    modal.style.display = "flex";
+}
+
+// CLOSE MODAL
+function closeModal(){
+    document.getElementById('modal').style.display = "none";
+}
+
+// CLICK OUTSIDE CLOSE
+document.getElementById('modal').addEventListener("click", function(e){
+    if(e.target.id === "modal"){
+        closeModal();
+    }
+});
+
+
+
+let isFullscreen = false;
+
+// TOGGLE FULLSCREEN (IMAGE ONLY)
+function toggleFullscreen(){
+
+    const img = document.getElementById("modal-img");
+    const btn = document.getElementById("fs-btn");
+
+    if(!isFullscreen){
+
+        // ENTER FULLSCREEN (IMAGE ONLY)
+        if(img.requestFullscreen){
+            img.requestFullscreen();
+        }
+
+        isFullscreen = true;
+        btn.innerHTML = "⤢";
+
+        showFullscreenAlert();
+        showFullscreenExitOverlay();
+
+    } else {
+
+        exitFullscreenMode();
+    }
+}
+
+
+// EXIT FULLSCREEN (CLEAN HANDLER)
+function exitFullscreenMode(){
+
+    if(document.exitFullscreen){
+        document.exitFullscreen();
+    }
+
+    isFullscreen = false;
+
+    const btn = document.getElementById("fs-btn");
+    if(btn){
+        btn.innerHTML = "⛶";
+    }
+
+    // remove overlay if exists
+    const overlay = document.getElementById("fs-exit-overlay");
+    if(overlay){
+        overlay.remove();
+    }
+}
+
+
+// CENTER ALERT MESSAGE
+function showFullscreenAlert(){
+
+    const alertBox = document.getElementById("fs-alert");
+    if(!alertBox) return;
+
+    alertBox.style.opacity = "1";
+
+    setTimeout(() => {
+        alertBox.style.opacity = "0";
+    }, 2500);
+}
+
+
+// MOBILE + FULLSCREEN EXIT BUTTON (VISIBLE ON IMAGE)
+function showFullscreenExitOverlay(){
+
+    // avoid duplicate overlay
+    if(document.getElementById("fs-exit-overlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "fs-exit-overlay";
+    overlay.innerHTML = "✕";
+
+    overlay.onclick = exitFullscreenMode;
+
+    document.body.appendChild(overlay);
+}
+
+
+// ESC KEY SUPPORT (DESKTOP)
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+        exitFullscreenMode();
+    }
+});
+
+
+// SAFETY: RESET STATE IF USER EXITS VIA BROWSER BUTTON
+document.addEventListener("fullscreenchange", function(){
+    if(!document.fullscreenElement){
+        isFullscreen = false;
+
+        const btn = document.getElementById("fs-btn");
+        if(btn){
+            btn.innerHTML = "⛶";
+        }
+
+        const overlay = document.getElementById("fs-exit-overlay");
+        if(overlay){
+            overlay.remove();
+        }
+    }
+});
+</script>
+
+
+
+</body>
+</html>
