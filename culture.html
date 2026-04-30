@@ -1021,17 +1021,18 @@ function openModal(index){
     img.src = data.src;
 
     // detect orientation from filename
-    const name = data.src.toLowerCase();
+box.classList.remove("horizontal","vertical");
 
-    box.classList.remove("horizontal","vertical");
+// images 1, 2, and 5 (index 0, 1, 4) are VERTICAL
+const verticalIndexes = [0, 1, 4];
 
-    if(name.includes("vertical")){
-        box.classList.add("vertical");
-        frame.src = "Vertical(FRAME).png";
-    } else {
-        box.classList.add("horizontal");
-        frame.src = "Horizontal(FRAME).png";
-    }
+if (verticalIndexes.includes(index)) {
+    box.classList.add("vertical");
+    frame.src = "Vertical(FRAME).png";
+} else {
+    box.classList.add("horizontal");
+    frame.src = "Horizontal(FRAME).png";
+}
 
     const titleEl = document.getElementById('modal-title');
     const descEl = document.getElementById('modal-desc');
