@@ -163,9 +163,8 @@ body{
     opacity:1;
 }
 
-.card:hover img {
-    filter: brightness(0.4);
-    transform: scale(1.05);
+.card:hover img{
+    transform:scale(1.1);
 }
 
 .overlay{
@@ -202,58 +201,7 @@ body{
     opacity: 1;
 }
 
-/* "View Image" text */
-.card::before {
-    content: "View Image";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
 
-    color: #fff;
-    font-size: 20px;
-    font-family: 'Old English Five', serif;
-
-    opacity: 0;
-    transition: .3s ease;
-    z-index: 2;
-}
-
-.card:hover::before {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* =========================
-   ZOOM MODAL (NEW)
-========================= */
-
-.zoom-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    z-index: 9999;
-
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.zoom-modal img {
-    max-width: 95%;
-    max-height: 90vh;
-    object-fit: contain;
-}
-
-.zoom-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-}
 /* MODAL BACKGROUND */
 .modal{
     display:none; /* hidden by default */
@@ -609,7 +557,105 @@ body{
 
 
 
-   
+#modal-title{
+    font-family: "Old English Five", serif !important;
+    letter-spacing: 1px;
+    font-size: 38px;
+}
+
+#modal-desc{
+    font-family:'OldEnglishCustom', serif;
+    line-height: 1.6;
+    font-size: 15px;
+    opacity: 0.95;
+}
+
+#fs-btn{
+    position:absolute;
+    top:25px;
+    left:35px;
+    font-size:42px;
+    background:transparent;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    z-index:2100;
+}
+
+#fs-btn:hover{
+    transform:scale(1.1);
+}
+
+
+
+#fs-exit-overlay{
+    position:fixed;
+    top:20px;
+    right:20px;
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+
+    font-size:42px;
+    border-radius:50%;
+    cursor:pointer;
+
+    z-index:999999; /* VERY IMPORTANT */
+    backdrop-filter: blur(6px);
+}
+
+/* MOBILE IMPROVEMENT */
+@media (max-width:768px){
+    #fs-exit-overlay{
+        width:55px;
+        height:55px;
+        font-size:26px;
+        top:15px;
+        right:15px;
+    }
+}
+.fs-mode{
+    background:black !important;
+}
+
+/* make image centered like your GOAL */
+.fs-mode .frame-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* floating exit button (VISIBLE ON TOP OF IMAGE) */
+#fs-exit-overlay{
+    position:fixed;
+    top:20px;
+    left:20px;
+
+    width:45px;
+    height:45px;
+
+    background:rgba(0,0,0,0.6);
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    font-size:22px;
+
+    z-index:999999;
+    cursor:pointer;
+
+    backdrop-filter: blur(6px);
+}
 
 
 .floating-music{
@@ -812,11 +858,7 @@ body{
     </div>
 </div>
 
-<div class="zoom-modal" id="zoomModal" onclick="closeZoom(event)">
-    <span class="zoom-close">×</span>
-    <img id="zoomImage">
-</div>
-   
+
 <!-- =========================
      FOOTER (SEPARATE SECTION + OWN BACKGROUND)
 ========================= -->
@@ -919,6 +961,15 @@ const images = [
 
 let current = 0;
 
+// OPEN MODAL
+function openModal(index){
+
+    const modal = document.getElementById('modal');
+    const box = document.getElementById('modal-box');
+    const data = images[index];
+
+    const img = document.getElementById('modal-img');
+    const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
 
     img.src = data.src;
 
@@ -984,66 +1035,110 @@ document.getElementById('modal').addEventListener("click", function(e){
 
 
 
+let isFullscreen = false;
 
-// OPEN MODAL (UPDATED CLEAN VERSION)
-function openModal(index){
+// TOGGLE FULLSCREEN (IMAGE ONLY)
+function toggleFullscreen(){
 
-    const modal = document.getElementById('modal');
-    const data = images[index];
+    const img = document.getElementById("modal-img");
+    const btn = document.getElementById("fs-btn");
 
-    const img = document.getElementById('modal-img');
-    img.src = data.src;
+    if(!isFullscreen){
 
-    const frame = document.getElementById('frame-img');
-    const name = data.src.toLowerCase();
+        // ENTER FULLSCREEN (IMAGE ONLY)
+        if(img.requestFullscreen){
+            img.requestFullscreen();
+        }
 
-    if(name.includes("vertical")){
-        frame.src = "Vertical(FRAME).png";
+        isFullscreen = true;
+        btn.innerHTML = "⤢";
+
+        showFullscreenAlert();
+        showFullscreenExitOverlay();
+
     } else {
-        frame.src = "Horizontal(FRAME).png";
-    }
 
-    const titleEl = document.getElementById('modal-title');
-    const descEl = document.getElementById('modal-desc');
-
-    descEl.innerHTML = "";
-
-    data.captions.forEach(item => {
-        descEl.innerHTML += `
-            <div style="margin-bottom:20px;">
-                <b>${item.title}</b>
-                <p>${item.desc}</p>
-            </div>
-        `;
-    });
-
-    modal.style.display = "flex";
-}
-
-/* CLOSE MODAL */
-function closeModal(){
-    document.getElementById('modal').style.display = "none";
-}
-
-/* =========================
-   IMAGE ZOOM FEATURE
-========================= */
-
-document.getElementById("modal-img").onclick = function(){
-
-    const zoom = document.getElementById("zoomModal");
-    const zoomImg = document.getElementById("zoomImage");
-
-    zoomImg.src = this.src;
-    zoom.style.display = "flex";
-};
-
-function closeZoom(e){
-    if(e.target.id === "zoomModal" || e.target.className === "zoom-close"){
-        document.getElementById("zoomModal").style.display = "none";
+        exitFullscreenMode();
     }
 }
 
+
+// EXIT FULLSCREEN (CLEAN HANDLER)
+function exitFullscreenMode(){
+
+    if(document.exitFullscreen){
+        document.exitFullscreen();
+    }
+
+    isFullscreen = false;
+
+    const btn = document.getElementById("fs-btn");
+    if(btn){
+        btn.innerHTML = "⛶";
+    }
+
+    // remove overlay if exists
+    const overlay = document.getElementById("fs-exit-overlay");
+    if(overlay){
+        overlay.remove();
+    }
+}
+
+
+// CENTER ALERT MESSAGE
+function showFullscreenAlert(){
+
+    const alertBox = document.getElementById("fs-alert");
+    if(!alertBox) return;
+
+    alertBox.style.opacity = "1";
+
+    setTimeout(() => {
+        alertBox.style.opacity = "0";
+    }, 2500);
+}
+
+
+// MOBILE + FULLSCREEN EXIT BUTTON (VISIBLE ON IMAGE)
+function showFullscreenExitOverlay(){
+
+    // avoid duplicate overlay
+    if(document.getElementById("fs-exit-overlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "fs-exit-overlay";
+    overlay.innerHTML = "✕";
+
+    overlay.onclick = exitFullscreenMode;
+
+    document.body.appendChild(overlay);
+}
+
+
+// ESC KEY SUPPORT (DESKTOP)
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+        exitFullscreenMode();
+    }
+});
+
+
+// SAFETY: RESET STATE IF USER EXITS VIA BROWSER BUTTON
+document.addEventListener("fullscreenchange", function(){
+    if(!document.fullscreenElement){
+        isFullscreen = false;
+
+        const btn = document.getElementById("fs-btn");
+        if(btn){
+            btn.innerHTML = "⛶";
+        }
+
+        const overlay = document.getElementById("fs-exit-overlay");
+        if(overlay){
+            overlay.remove();
+        }
+    }
+});
 </script>
 
 
