@@ -971,20 +971,25 @@ function openModal(index){
     const img = document.getElementById('modal-img');
     const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
 
-    img.src = data.src;
+img.src = data.src;
 
-    // detect orientation from filename
-    const name = data.src.toLowerCase();
+// detect orientation from filename
+const name = data.src.toLowerCase();
 
-    box.classList.remove("horizontal","vertical");
+box.classList.remove("horizontal", "vertical");
 
-    if(name.includes("vertical")){
-        box.classList.add("vertical");
-        frame.src = "Vertical(FRAME).png";
-    } else {
-        box.classList.add("horizontal");
-        frame.src = "Horizontal(FRAME).png";
-    }
+// treat these as vertical images too
+if (
+    name.includes("vertical") ||
+    name.includes("error4.jpeg") ||
+    name.includes("error6.png")
+) {
+    box.classList.add("vertical");
+    frame.src = "Vertical(FRAME).png";
+} else {
+    box.classList.add("horizontal");
+    frame.src = "Horizontal(FRAME).png";
+}
 
     const titleEl = document.getElementById('modal-title');
     const descEl = document.getElementById('modal-desc');
