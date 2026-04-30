@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BSTM0602</title>
+<title>BSTM0602 - Culture</title>
 <link rel="icon" type="image/png" href="Logo.png">
 
 <!-- Bootstrap (needed for your nav to work) -->
@@ -27,7 +27,7 @@ html, body{
 body{
     background:
     linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("44.jpg") center/cover no-repeat;
+    url("bgMUSIC.png") center/cover no-repeat;
 
     background-attachment: fixed;
 }
@@ -56,7 +56,7 @@ body{
     text-align:center;
     color:#fff;
     width:100%;
-    max-width:1400px;
+    max-width:1300px;
 
     margin:120px auto 0;
     padding:0 20px; /* 👈 THIS FIXES EDGE ISSUE */
@@ -846,7 +846,7 @@ The Spanish Colonial Period greatly influenced Filipino culture through architec
 
 </header>
 <div class="floating-music">
-    BSTM-M602 | Music Section
+    BSTM-M602 | Culture Section
 </div>
 
 
@@ -896,7 +896,7 @@ const images = [
     src: "1-Culture.jpeg",
     captions: [
         {
-            title: "Informational Caption:",
+            title: "Informative Caption:",
             desc: "This photo shows a traditional dance called “Pandangguhan,” performed during the feast of Sta. Martha in Pateros, a competition between the 10 barangays, which was held last February 7, 2026. This photo was captured by Erin Salonga at Pateros Church. The festival happens every second week of February and celebrates culture, faith, and community through music and dance."
         },
         {
@@ -924,7 +924,7 @@ const images = [
     src: "3-Culture.jpeg",
     captions: [
         {
-            title: "Informational Caption:",
+            title: "Informative Caption:",
             desc: "A kalesa driver guides a horse-drawn carriage along Calle Crisologo in Vigan on April 6, 2026, passing well-preserved Spanish colonial-era houses. The traditional transport continues to operate in the city’s UNESCO-listed historic district."
         },
         {
@@ -966,7 +966,7 @@ const images = [
     src: "6-Culture.jpeg",
     captions: [
         {
-            title: "Informational Caption:",
+            title: "Informative Caption:",
             desc: "Standing in the historic heart of Intramuros, Manila, the Palacio del Gobernador rises on the site of the former Spanish colonial governor-general’s residence. Destroyed during World War II and rebuilt in 1976, it now serves as a government center for administrative and public service. The building features formal architecture and arched entrances. It was captured by Danell Caong on March 31, 2026."
         },
         {
@@ -980,7 +980,7 @@ const images = [
     src: "7-Culture.jpeg",
     captions: [
         {
-            title: "Informational Caption:",
+            title: "Informative Caption:",
             desc: "A powerful moment from the annual Senakulo 2026 in Bagumbayan, Taguig City on April 4, 2026 brings to life a traditional Holy Week reenactment of the encounter between Veronica and Jesus on His way to Calvary, reflecting faith, sacrifice, and devotion deeply rooted in Filipino culture. Captured by Eirine Sixto, the image shows Veronica compassionately wiping the face of Jesus with her veil as He carries the cross."
         },
         {
@@ -994,7 +994,7 @@ const images = [
     src: "8-Culture.jpeg",
     captions: [
         {
-            title: "Informational Caption:",
+            title: "Informative Caption:",
             desc: "Witness a graceful cultural performance by the La Manila Dance Ambassador and Rondalla as they showcase Pangdanggo sa Ilaw during the Escolta Art Exchange event, a celebration of heritage and creativity in Manila’s historic district. This traditional dance, performed with lit candles, reflects Spanish colonial influence and Filipino artistry through music, movement, and storytelling. Captured by Bea Macadangdang on March 21, 2026."
         },
         {
@@ -1005,7 +1005,6 @@ const images = [
 }
 
 ];
-
 
 let current = 0;
 
@@ -1024,18 +1023,15 @@ function openModal(index){
     // detect orientation from filename
     const name = data.src.toLowerCase();
 
-// detect orientation using index
-box.classList.remove("horizontal","vertical");
+    box.classList.remove("horizontal","vertical");
 
-const horizontalIndexes = [2, 3, 5, 6, 7]; // zero-based index
-
-if(horizontalIndexes.includes(index)){
-    box.classList.add("horizontal");
-    frame.src = "Horizontal(FRAME).png";
-} else {
-    box.classList.add("vertical");
-    frame.src = "Vertical(FRAME).png";
-}
+    if(name.includes("vertical")){
+        box.classList.add("vertical");
+        frame.src = "Vertical(FRAME).png";
+    } else {
+        box.classList.add("horizontal");
+        frame.src = "Horizontal(FRAME).png";
+    }
 
     const titleEl = document.getElementById('modal-title');
     const descEl = document.getElementById('modal-desc');
@@ -1094,23 +1090,49 @@ function toggleFullscreen(){
     const img = document.getElementById("modal-img");
     const btn = document.getElementById("fs-btn");
 
-    if(!isFullscreen){
+    // IF FULLSCREEN ALREADY OPEN → CLOSE
+    const existing = document.getElementById("image-fullscreen-overlay");
 
-        // ENTER FULLSCREEN (IMAGE ONLY)
-        if(img.requestFullscreen){
-            img.requestFullscreen();
-        }
-
-        isFullscreen = true;
-        btn.innerHTML = "⤢";
-
-        showFullscreenAlert();
-        showFullscreenExitOverlay();
-
-    } else {
-
-        exitFullscreenMode();
+    if(existing){
+        existing.remove();
+        isFullscreen = false;
+        btn.innerHTML = "⛶";
+        return;
     }
+
+    // CREATE FULLSCREEN OVERLAY (IMAGE ONLY)
+    const overlay = document.createElement("div");
+    overlay.id = "image-fullscreen-overlay";
+
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "black";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "999999";
+
+    // IMAGE ONLY (NO FRAME, NO MODAL)
+    const fullImg = document.createElement("img");
+    fullImg.src = img.src;
+
+    fullImg.style.maxWidth = "100%";
+    fullImg.style.maxHeight = "100%";
+    fullImg.style.objectFit = "contain";
+
+    overlay.appendChild(fullImg);
+
+    // TAP ANYWHERE TO EXIT (MOBILE FRIENDLY)
+    overlay.addEventListener("click", () => {
+        overlay.remove();
+        isFullscreen = false;
+        btn.innerHTML = "⛶";
+    });
+
+    document.body.appendChild(overlay);
+
+    isFullscreen = true;
+    btn.innerHTML = "⤢";
 }
 
 
@@ -1191,7 +1213,6 @@ document.addEventListener("fullscreenchange", function(){
     }
 });
 </script>
-
 
 
 </body>
