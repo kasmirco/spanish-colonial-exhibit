@@ -1040,14 +1040,15 @@ let isFullscreen = false;
 // TOGGLE FULLSCREEN (IMAGE ONLY)
 function toggleFullscreen(){
 
-    const img = document.getElementById("modal-img");
+    const box = document.getElementById("modal-img"); // 👈 IMPORTANT FIX
     const btn = document.getElementById("fs-btn");
 
     if(!isFullscreen){
 
-        // ENTER FULLSCREEN (IMAGE ONLY)
-        if(img.requestFullscreen){
-            img.requestFullscreen();
+        if(box.requestFullscreen){
+            box.requestFullscreen();
+        } else if(box.webkitRequestFullscreen){
+            box.webkitRequestFullscreen(); // Safari fix
         }
 
         isFullscreen = true;
@@ -1057,7 +1058,6 @@ function toggleFullscreen(){
         showFullscreenExitOverlay();
 
     } else {
-
         exitFullscreenMode();
     }
 }
@@ -1066,9 +1066,11 @@ function toggleFullscreen(){
 // EXIT FULLSCREEN (CLEAN HANDLER)
 function exitFullscreenMode(){
 
-    if(document.exitFullscreen){
-        document.exitFullscreen();
-    }
+   if(document.exitFullscreen){
+       document.exitFullscreen();
+   } else if(document.webkitExitFullscreen){
+       document.webkitExitFullscreen();
+   }
 
     isFullscreen = false;
 
