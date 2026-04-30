@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BSTM0602</title>
+<title>BSTM0602 - Music</title>
 <link rel="icon" type="image/png" href="Logo.png">
 
 <!-- Bootstrap (needed for your nav to work) -->
@@ -693,6 +693,19 @@ body{
         opacity:0;
     }
 }
+
+.fs-mode{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 </style>
 </head>
 
@@ -971,20 +984,25 @@ function openModal(index){
     const img = document.getElementById('modal-img');
     const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
 
-    img.src = data.src;
+img.src = data.src;
 
-    // detect orientation from filename
-    const name = data.src.toLowerCase();
+// detect orientation from filename
+const name = data.src.toLowerCase();
 
-    box.classList.remove("horizontal","vertical");
+box.classList.remove("horizontal", "vertical");
 
-    if(name.includes("vertical")){
-        box.classList.add("vertical");
-        frame.src = "Vertical(FRAME).png";
-    } else {
-        box.classList.add("horizontal");
-        frame.src = "Horizontal(FRAME).png";
-    }
+// treat these as vertical images too
+if (
+    name.includes("vertical") ||
+    name.includes("error4.jpeg") ||
+    name.includes("error6.png")
+) {
+    box.classList.add("vertical");
+    frame.src = "Vertical(FRAME).png";
+} else {
+    box.classList.add("horizontal");
+    frame.src = "Horizontal(FRAME).png";
+}
 
     const titleEl = document.getElementById('modal-title');
     const descEl = document.getElementById('modal-desc');
@@ -1040,14 +1058,19 @@ let isFullscreen = false;
 // TOGGLE FULLSCREEN (IMAGE ONLY)
 function toggleFullscreen(){
 
-    const img = document.getElementById("modal-img");
+    const box = document.getElementById("modal-box");
     const btn = document.getElementById("fs-btn");
 
     if(!isFullscreen){
 
-        // ENTER FULLSCREEN (IMAGE ONLY)
-        if(img.requestFullscreen){
-            img.requestFullscreen();
+        // ENTER FULLSCREEN (WORKS ON MOBILE + DESKTOP)
+        if(box.requestFullscreen){
+            box.requestFullscreen();
+        } else if(box.webkitRequestFullscreen){
+            box.webkitRequestFullscreen(); // iOS Safari fallback
+        } else {
+            // fallback for mobile browsers that block fullscreen API
+            box.classList.add("fs-mode");
         }
 
         isFullscreen = true;
@@ -1066,8 +1089,17 @@ function toggleFullscreen(){
 // EXIT FULLSCREEN (CLEAN HANDLER)
 function exitFullscreenMode(){
 
+    // exit real fullscreen (desktop + supported mobile)
     if(document.exitFullscreen){
         document.exitFullscreen();
+    } else if(document.webkitExitFullscreen){
+        document.webkitExitFullscreen();
+    }
+
+    // fallback cleanup for mobile class-based fullscreen
+    const box = document.getElementById("modal-box");
+    if(box){
+        box.classList.remove("fs-mode");
     }
 
     isFullscreen = false;
@@ -1077,7 +1109,6 @@ function exitFullscreenMode(){
         btn.innerHTML = "⛶";
     }
 
-    // remove overlay if exists
     const overlay = document.getElementById("fs-exit-overlay");
     if(overlay){
         overlay.remove();
