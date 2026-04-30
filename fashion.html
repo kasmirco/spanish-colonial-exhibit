@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BSTM0602</title>
+<title>BSTM0602 - Fashion</title>
 <link rel="icon" type="image/png" href="Logo.png">
 
 <!-- Bootstrap (needed for your nav to work) -->
@@ -27,7 +27,7 @@ html, body{
 body{
     background:
     linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("11.jpg") center/cover no-repeat;
+    url("bgMUSIC.png") center/cover no-repeat;
 
     background-attachment: fixed;
 }
@@ -56,7 +56,7 @@ body{
     text-align:center;
     color:#fff;
     width:100%;
-    max-width:1350px;
+    max-width:1300px;
 
     margin:120px auto 0;
     padding:0 20px; /* 👈 THIS FIXES EDGE ISSUE */
@@ -829,7 +829,7 @@ The Spanish Colonial Period greatly influenced Filipino fashion by introducing e
 
 </header>
 <div class="floating-music">
-    BSTM-M602 | Music Section
+    BSTM-M602 | Fashion Section
 </div>
 
 
@@ -893,7 +893,7 @@ const images = [
     src: "(New)Fashion(VERTICAL)4.jpeg",
     captions: [
         {
-            title: "Informational Caption:",
+            title: "Informative Caption:",
             desc: "A traditional Filipiniana dress stands on display at the National Museum of Fine Arts, captured by Juliana Mhay Caballero on April 19, 2026, illustrating the style worn by Filipino women during the Spanish colonial era. The piece highlights the fusion of local craftsmanship and European influence, preserved in the museum to showcase the country’s cultural and historical identity."
         },
         {
@@ -960,6 +960,7 @@ const images = [
 }
 
 ];
+
 
 
 let current = 0;
@@ -1046,23 +1047,49 @@ function toggleFullscreen(){
     const img = document.getElementById("modal-img");
     const btn = document.getElementById("fs-btn");
 
-    if(!isFullscreen){
+    // IF FULLSCREEN ALREADY OPEN → CLOSE
+    const existing = document.getElementById("image-fullscreen-overlay");
 
-        // ENTER FULLSCREEN (IMAGE ONLY)
-        if(img.requestFullscreen){
-            img.requestFullscreen();
-        }
-
-        isFullscreen = true;
-        btn.innerHTML = "⤢";
-
-        showFullscreenAlert();
-        showFullscreenExitOverlay();
-
-    } else {
-
-        exitFullscreenMode();
+    if(existing){
+        existing.remove();
+        isFullscreen = false;
+        btn.innerHTML = "⛶";
+        return;
     }
+
+    // CREATE FULLSCREEN OVERLAY (IMAGE ONLY)
+    const overlay = document.createElement("div");
+    overlay.id = "image-fullscreen-overlay";
+
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "black";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "999999";
+
+    // IMAGE ONLY (NO FRAME, NO MODAL)
+    const fullImg = document.createElement("img");
+    fullImg.src = img.src;
+
+    fullImg.style.maxWidth = "100%";
+    fullImg.style.maxHeight = "100%";
+    fullImg.style.objectFit = "contain";
+
+    overlay.appendChild(fullImg);
+
+    // TAP ANYWHERE TO EXIT (MOBILE FRIENDLY)
+    overlay.addEventListener("click", () => {
+        overlay.remove();
+        isFullscreen = false;
+        btn.innerHTML = "⛶";
+    });
+
+    document.body.appendChild(overlay);
+
+    isFullscreen = true;
+    btn.innerHTML = "⤢";
 }
 
 
@@ -1143,7 +1170,6 @@ document.addEventListener("fullscreenchange", function(){
     }
 });
 </script>
-
 
 
 </body>
