@@ -693,19 +693,6 @@ body{
         opacity:0;
     }
 }
-
-.fs-mode{
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999999;
-    background: black;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 </style>
 </head>
 
@@ -984,25 +971,20 @@ function openModal(index){
     const img = document.getElementById('modal-img');
     const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
 
-img.src = data.src;
+    img.src = data.src;
 
-// detect orientation from filename
-const name = data.src.toLowerCase();
+    // detect orientation from filename
+    const name = data.src.toLowerCase();
 
-box.classList.remove("horizontal", "vertical");
+    box.classList.remove("horizontal","vertical");
 
-// treat these as vertical images too
-if (
-    name.includes("vertical") ||
-    name.includes("error4.jpeg") ||
-    name.includes("error6.png")
-) {
-    box.classList.add("vertical");
-    frame.src = "Vertical(FRAME).png";
-} else {
-    box.classList.add("horizontal");
-    frame.src = "Horizontal(FRAME).png";
-}
+    if(name.includes("vertical")){
+        box.classList.add("vertical");
+        frame.src = "Vertical(FRAME).png";
+    } else {
+        box.classList.add("horizontal");
+        frame.src = "Horizontal(FRAME).png";
+    }
 
     const titleEl = document.getElementById('modal-title');
     const descEl = document.getElementById('modal-desc');
@@ -1058,48 +1040,60 @@ let isFullscreen = false;
 // TOGGLE FULLSCREEN (IMAGE ONLY)
 function toggleFullscreen(){
 
-    const box = document.getElementById("modal-box");
+    const img = document.getElementById("modal-img");
     const btn = document.getElementById("fs-btn");
 
-    if(!isFullscreen){
+    // IF FULLSCREEN ALREADY OPEN → CLOSE
+    const existing = document.getElementById("image-fullscreen-overlay");
 
-        // ENTER FULLSCREEN (WORKS ON MOBILE + DESKTOP)
-        if(box.requestFullscreen){
-            box.requestFullscreen();
-        } else if(box.webkitRequestFullscreen){
-            box.webkitRequestFullscreen(); // iOS Safari fallback
-        } else {
-            // fallback for mobile browsers that block fullscreen API
-            box.classList.add("fs-mode");
-        }
-
-        isFullscreen = true;
-        btn.innerHTML = "⤢";
-
-        showFullscreenAlert();
-        showFullscreenExitOverlay();
-
-    } else {
-
-        exitFullscreenMode();
+    if(existing){
+        existing.remove();
+        isFullscreen = false;
+        btn.innerHTML = "⛶";
+        return;
     }
+
+    // CREATE FULLSCREEN OVERLAY (IMAGE ONLY)
+    const overlay = document.createElement("div");
+    overlay.id = "image-fullscreen-overlay";
+
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "black";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "999999";
+
+    // IMAGE ONLY (NO FRAME, NO MODAL)
+    const fullImg = document.createElement("img");
+    fullImg.src = img.src;
+
+    fullImg.style.maxWidth = "100%";
+    fullImg.style.maxHeight = "100%";
+    fullImg.style.objectFit = "contain";
+
+    overlay.appendChild(fullImg);
+
+    // TAP ANYWHERE TO EXIT (MOBILE FRIENDLY)
+    overlay.addEventListener("click", () => {
+        overlay.remove();
+        isFullscreen = false;
+        btn.innerHTML = "⛶";
+    });
+
+    document.body.appendChild(overlay);
+
+    isFullscreen = true;
+    btn.innerHTML = "⤢";
 }
 
 
 // EXIT FULLSCREEN (CLEAN HANDLER)
 function exitFullscreenMode(){
 
-    // exit real fullscreen (desktop + supported mobile)
     if(document.exitFullscreen){
         document.exitFullscreen();
-    } else if(document.webkitExitFullscreen){
-        document.webkitExitFullscreen();
-    }
-
-    // fallback cleanup for mobile class-based fullscreen
-    const box = document.getElementById("modal-box");
-    if(box){
-        box.classList.remove("fs-mode");
     }
 
     isFullscreen = false;
@@ -1109,6 +1103,7 @@ function exitFullscreenMode(){
         btn.innerHTML = "⛶";
     }
 
+    // remove overlay if exists
     const overlay = document.getElementById("fs-exit-overlay");
     if(overlay){
         overlay.remove();
