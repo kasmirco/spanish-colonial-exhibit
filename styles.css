@@ -43,6 +43,57 @@ body{
     transition:.4s ease;
 }
 
+/* =========================
+   WELCOME OVERLAY
+========================= */
+#welcomeOverlay{
+    position: fixed;
+    inset: 0;
+    background: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999999;
+    overflow: hidden;
+}
+
+/* TEXT STYLE */
+.welcome-text{
+    font-family: "Old English Five", serif !important;
+    font-size: 3rem;
+    color: rgb(248, 248, 248);
+    text-align: center;
+    animation: popIn 1s ease-out, glow 2s infinite alternate;
+    z-index: 2;
+}
+
+/* POP ANIMATION */
+@keyframes popIn{
+    from{
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* GLOW EFFECT */
+@keyframes glow{
+    from{
+        text-shadow: 0 0 10px rgb(88, 55, 16);
+    }
+    to{
+        text-shadow: 0 0 25px rgb(124, 82, 4), 0 0 40px rgb(104, 85, 32);
+    }
+}
+
+
+
+
+
 /* HERO */
 .hero-section{
     min-height:100vh;
@@ -51,6 +102,8 @@ body{
     url("Background.png") center/cover no-repeat;
     position:relative;
 }
+
+
 @font-face {
     font-family: 'Old English Five';
     src: url('OldEnglishFive.woff2') format('woff2'),
@@ -59,8 +112,6 @@ body{
     font-style: normal;
     font-display: swap;
 }
-
-
 
 
 /* NAV */
@@ -94,7 +145,7 @@ body{
 
 /* BRAND */
 .brand-title{
-    font-family:'OldEnglishCustom', serif;
+    font-family:'OldEnglishFive', serif;
     font-size:18px;
     letter-spacing:1px;
 }
