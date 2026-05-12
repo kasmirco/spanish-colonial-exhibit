@@ -1,4 +1,7 @@
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,6 +17,18 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
+/* =========================
+  
+
+
+DRAFT FOR FRAME IMAGE IN CULTURE SECTION (TESTING PURPOSES ONLY, IGNORE)
+
+
+
+========================= */
+
+
+
 
 /* =========================
    GLOBAL BACKGROUND (FIXED FULL PAGE)
@@ -27,7 +42,7 @@ html, body{
 body{
     background:
     linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("bgMUSIC.png") center/cover no-repeat;
+    url("bgCULTURE.png") center/cover no-repeat;
 
     background-attachment: fixed;
 }
@@ -56,7 +71,7 @@ body{
     text-align:center;
     color:#fff;
     width:100%;
-    max-width:1300px;
+    max-width:1400px;
 
     margin:120px auto 0;
     padding:0 20px; /* 👈 THIS FIXES EDGE ISSUE */
@@ -256,6 +271,7 @@ body{
 .frame-container{
     position:relative;
     flex:1; /* IMPORTANT */
+    
     display:flex;
     align-items:center;
     justify-content:center;
@@ -274,8 +290,8 @@ body{
 /* ACTUAL IMAGE (INSIDE FRAME) */
 .framed-image{
     position:relative;
-    max-width:70%;
-    max-height:70%;
+    max-width:100%;
+    max-height:100%;
     object-fit:contain;
 }
 
@@ -416,7 +432,7 @@ body{
 
 /* NAV BAR BASE */
 .custom-nav{
-    background-color: #4d431b33;
+    background-color: #86663623;
     padding-top:18px;
 
     position: fixed;
@@ -526,8 +542,24 @@ body{
     outline: none;
 }
 
-.navbar-dark .navbar-toggler-icon{
-    filter: invert(1);
+/* =========================
+   WHITE BURGER ICON
+========================= */
+
+/* REMOVE DEFAULT BORDER */
+.navbar-toggler{
+    border: 1px solid rgba(255,255,255,0.7) !important;
+    box-shadow: none !important;
+}
+
+/* REMOVE BLUE OUTLINE WHEN CLICKED */
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
+
+/* WHITE MENU ICON */
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 /* FOOTER */
@@ -777,14 +809,14 @@ The Spanish Colonial Period greatly influenced Filipino fashion by introducing e
 
             <!-- CARD 1 -->
             <div class="card" onclick="openModal(0)">
-                <img src="(New)Fashion(HORIZONTAL)1.jpeg">
+                <img src="upd_fashion1(Horizontal).jpeg">
                 <div class="overlay">
 <p>A multi-generational family poses in traditional Filipino attire inspired by the Spanish colonial era. The group is dressed in garments such as the baro’t saya, terno, and barong, with intricate fabrics, lace details, and hand-held fans. The setting features a preserve Spanish colonial houses in Batangas. This photo was captured by Justin Lui Palentinos on March 29, 2026 at Casa Recuerdos De Taal, Batangas.</p>                </div>
             </div>
 
             <!-- CARD 2 -->
             <div class="card" onclick="openModal(1)">
-                                <img src="(New)Fashion(VERTICAL)4.jpeg">
+                                <img src="upd_fashion2(Vertical).JPG">
 
                 <div class="overlay">
                     <p>A traditional Filipiniana dress stands on display at the National Museum of Fine Arts, captured by Juliana Mhay Caballero on April 19, 2026, illustrating the style worn by Filipino women during the Spanish colonial era. The piece highlights the fusion of local craftsmanship and European influence, preserved in the museum to showcase the country’s cultural and historical identity.</p>
@@ -793,23 +825,23 @@ The Spanish Colonial Period greatly influenced Filipino fashion by introducing e
 
             <!-- CARD 3 -->
             <div class="card" onclick="openModal(2)">
-                <img src="(New)Fashion(HORIZONTAL)2.jpeg">
+                <img src="upd_fashion3(Vertical).jpeg">
                 <div class="overlay">
-                    <p>On April 19, 2026, Senior High School graduates from Pamantasan ng Lungsod ng Maynila gathered at the National Museum of Fine Arts in Ermita, Manila, for a photo to commemorate their achievements. In the background, they stood before Juan Luna’s Spoliarium in their graduation attire of traditional Baro’t Saya and Barong Tagalog, reflecting the enduring influence of the Spanish regime on the nation's identity. This photo was captured by Samantha Lopez at April 19, 2026 at Manila</p>
+                    <p>Step into the elegance of the past with this portrait taken in Casa Recuerdos de Taal, Batangas, featuring a woman in traditional Filipino attire carefully sewing a Maria Clara gown. The Maria Clara dress, inspired by Spanish colonial fashion, became a symbol of modesty, grace, and Filipina identity during the 19th century. Captured by Aaron Loyola on March 29, 2026, this image reflects the enduring artistry and cultural heritage preserved through Filipino tradition.</p>
                 </div>
             </div>
 
             <!-- CARD 4 -->
             <div class="card" onclick="openModal(3)">
-                <img src="(New)Fashion(VERTICAL)5.jpeg">
+                <img src="upd_fashion4(Horizontal).jpeg">
                 <div class="overlay">
-                    <p>Celebrate the vibrant flavors of paella, a world-famous rice dish traditionally prepared with saffron, vegetables, seafood, or meat. Originating from Spain, paella became one of the most iconic dishes that influenced culinary traditions in many countries, including the Philippines. Captured by Ara Go on April 21, 2026 at Taguig City, this flavorful dish reflects the rich heritage of Spanish cuisine.</p>
+                                        <p>On April 19, 2026, Senior High School graduates from Pamantasan ng Lungsod ng Maynila gathered at the National Museum of Fine Arts in Ermita, Manila, for a photo to commemorate their achievements. In the background, they stood before Juan Luna’s Spoliarium in their graduation attire of traditional Baro’t Saya and Barong Tagalog, reflecting the enduring influence of the Spanish regime on the nation's identity. This photo was captured by Samantha Lopez at April 19, 2026 at Manila</p>
                 </div>
             </div>
 
             <!-- CARD 5 -->
             <div class="card" onclick="openModal(4)">
-                <img src="(New)Fashion(HORIZONTAL)3.jpeg">
+                <img src="upd_fashion5(Horizontal).JPG">
                 <div class="overlay">
                     <p>Drawn from the works of costume designer Rommel Padillo Serrano, these elegant ensembles closely follow archival designs and are enhanced by antique accessories from the IA Museum collection. In celebration of the 2026 National Women’s Month, this exhibit honors the women of the past and present who have preserved and carried forward the nation’s culture and heritage. Captured by Adela Baraquiel on April 19, 2026  at Centro de turismo, Manila.</p>
                 </div>
@@ -817,7 +849,7 @@ The Spanish Colonial Period greatly influenced Filipino fashion by introducing e
 
             <!-- CARD 6 -->
             <div class="card" onclick="openModal(5)">
-                <img src="(New)Fashion(VERTICAL)6.jpeg">
+                <img src="upd_fashion6(Vertical).jpeg">
                 <div class="overlay">
                     <p>Two men dressed in guardia civil military uniforms pose inside a heritage-style house while holding rifles, capturing a historical-themed moment for a visual portrayal of past authority and duty, by standing upright and composed. This photo was captured by John Gabrielle Parane on March 29, 2026 at Casa Recuerdos De Taal, Batangas.</p>
                 </div>
@@ -851,8 +883,8 @@ The Spanish Colonial Period greatly influenced Filipino fashion by introducing e
 
         <!-- TEXT SIDE -->
         <div class="modal-info">
-            <h2 id="modal-title">SAmple titl sadasd</h2>
-            <p id="modal-desc">dasdasda</p>
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
         </div>
 
     </div>
@@ -863,7 +895,8 @@ The Spanish Colonial Period greatly influenced Filipino fashion by introducing e
      FOOTER (SEPARATE SECTION + OWN BACKGROUND)
 ========================= -->
 <footer class="footer">
-    © 2026 Spanish Colonial Exhibit | Designed by Divine Ginez
+    © 2026 Spanish Colonial Exhibit | Designed and Developed by John Kenneth Costinar
+
 </footer>
 
 
@@ -876,7 +909,8 @@ The Spanish Colonial Period greatly influenced Filipino fashion by introducing e
 const images = [
 
 {
-    src: "(New)Fashion(HORIZONTAL)1.jpeg",
+    src: "upd_fashion1(Horizontal).jpeg",
+    frameSrc: "upd_fashion1(Horizontal) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
@@ -890,7 +924,8 @@ const images = [
 },
 
 {
-    src: "(New)Fashion(VERTICAL)4.jpeg",
+    src: "upd_fashion2(Vertical).JPG",
+    frameSrc: "upd_fashion2(Vertical) - (With Frame).PNG",
     captions: [
         {
             title: "Informative Caption:",
@@ -904,21 +939,8 @@ const images = [
 },
 
 {
-    src: "(New)Fashion(HORIZONTAL)2.jpeg",
-    captions: [
-        {
-            title: "Informative Caption:",
-            desc: "On April 19, 2026, Senior High School graduates from Pamantasan ng Lungsod ng Maynila gathered at the National Museum of Fine Arts in Ermita, Manila, for a photo to commemorate their achievements. In the background, they stood before Juan Luna’s Spoliarium in their graduation attire of traditional Baro’t Saya and Barong Tagalog, reflecting the enduring influence of the Spanish regime on the nation's identity. This photo was captured by Samantha Lopez on April 19, 2026 at Manila."
-        },
-        {
-            title: "Interpretative Caption:",
-            desc: "Framed by the legacy of the Spoliarium, these youth stand as a living bridge between the art of the past and the potential of the future, embodying a heritage that is both inherited and ignited."
-        }
-    ]
-},
-
-{
-    src: "(New)Fashion(VERTICAL)5.jpeg",
+    src: "upd_fashion3(Vertical).jpeg",
+    frameSrc: "upd_fashion3(Vertical) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
@@ -932,7 +954,23 @@ const images = [
 },
 
 {
-    src: "(New)Fashion(HORIZONTAL)3.jpeg",
+    src: "upd_fashion4(Horizontal).jpeg",
+    frameSrc: "upd_fashion4(Horizontal) - (With Frame).png",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "On April 19, 2026, Senior High School graduates from Pamantasan ng Lungsod ng Maynila gathered at the National Museum of Fine Arts in Ermita, Manila, for a photo to commemorate their achievements. In the background, they stood before Juan Luna’s Spoliarium in their graduation attire of traditional Baro’t Saya and Barong Tagalog, reflecting the enduring influence of the Spanish regime on the nation's identity. This photo was captured by Samantha Lopez at April 19, 2026 at Manila"
+        },
+        {
+            title: "Interpretative Caption:",
+            desc: "Framed by the legacy of the Spoliarium, these youth stand as a living bridge between the art of the past and the potential of the future, embodying a heritage that is both inherited and ignited."
+        }
+    ]
+},
+
+{
+       src: "upd_fashion5(Horizontal).JPG",
+    frameSrc: "upd_fashion5(Horizontal) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
@@ -946,7 +984,8 @@ const images = [
 },
 
 {
-    src: "(New)Fashion(VERTICAL)6.jpeg",
+    src: "upd_fashion6(Vertical).jpeg",
+    frameSrc: "upd_fashion6(Vertical) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
@@ -963,31 +1002,31 @@ const images = [
 
 
 
+
 let current = 0;
 
 // OPEN MODAL
 function openModal(index){
+
+    current = index; // ✅ IMPORTANT
 
     const modal = document.getElementById('modal');
     const box = document.getElementById('modal-box');
     const data = images[index];
 
     const img = document.getElementById('modal-img');
-    const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
 
-    img.src = data.src;
+    // ✅ SHOW FRAMED IMAGE IN MODAL
+    img.src = data.frameSrc;
 
-    // detect orientation from filename
-    const name = data.src.toLowerCase();
-
+    // OPTIONAL ORIENTATION (kept from your system)
     box.classList.remove("horizontal","vertical");
+    const verticalIndexes = [0,1,4];
 
-    if(name.includes("vertical")){
+    if (verticalIndexes.includes(index)) {
         box.classList.add("vertical");
-        frame.src = "Vertical(FRAME).png";
     } else {
         box.classList.add("horizontal");
-        frame.src = "Horizontal(FRAME).png";
     }
 
     const titleEl = document.getElementById('modal-title');
@@ -996,31 +1035,18 @@ function openModal(index){
     titleEl.innerHTML = "";
     descEl.innerHTML = "";
 
-data.captions.forEach(item => {
-
-    descEl.innerHTML += `
+    data.captions.forEach(item => {
+        descEl.innerHTML += `
         <div style="margin-bottom:25px;">
-            <div style="
-                font-family: 'Old English Five', serif;
-                font-weight: bold;
-                font-size: 18px;
-                margin-bottom:6px;
-                color:#000;
-            ">
+            <div style="font-family:'Old English Five'; font-size:18px; font-weight:bold; margin-bottom:6px;">
                 ${item.title}
             </div>
-
-            <div style="
-                font-family: 'OldEnglishCustom', serif;
-                font-size: 15px;
-                line-height:1.6;
-                color:#000;
-            ">
+            <div style="font-family:'OldEnglishCustom'; font-size:15px; line-height:1.6;">
                 ${item.desc}
             </div>
         </div>
-    `;
-});
+        `;
+    });
 
     modal.style.display = "flex";
 }
@@ -1037,17 +1063,13 @@ document.getElementById('modal').addEventListener("click", function(e){
     }
 });
 
-
-
 let isFullscreen = false;
 
-// TOGGLE FULLSCREEN (IMAGE ONLY)
+// FULLSCREEN (SHOW ORIGINAL IMAGE)
 function toggleFullscreen(){
 
-    const img = document.getElementById("modal-img");
     const btn = document.getElementById("fs-btn");
 
-    // IF FULLSCREEN ALREADY OPEN → CLOSE
     const existing = document.getElementById("image-fullscreen-overlay");
 
     if(existing){
@@ -1057,7 +1079,6 @@ function toggleFullscreen(){
         return;
     }
 
-    // CREATE FULLSCREEN OVERLAY (IMAGE ONLY)
     const overlay = document.createElement("div");
     overlay.id = "image-fullscreen-overlay";
 
@@ -1069,9 +1090,10 @@ function toggleFullscreen(){
     overlay.style.justifyContent = "center";
     overlay.style.zIndex = "999999";
 
-    // IMAGE ONLY (NO FRAME, NO MODAL)
     const fullImg = document.createElement("img");
-    fullImg.src = img.src;
+
+    // ✅ SHOW ORIGINAL (NO FRAME)
+    fullImg.src = images[current].src;
 
     fullImg.style.maxWidth = "100%";
     fullImg.style.maxHeight = "100%";
@@ -1079,7 +1101,6 @@ function toggleFullscreen(){
 
     overlay.appendChild(fullImg);
 
-    // TAP ANYWHERE TO EXIT (MOBILE FRIENDLY)
     overlay.addEventListener("click", () => {
         overlay.remove();
         isFullscreen = false;
@@ -1092,84 +1113,17 @@ function toggleFullscreen(){
     btn.innerHTML = "⤢";
 }
 
-
-// EXIT FULLSCREEN (CLEAN HANDLER)
-function exitFullscreenMode(){
-
-    if(document.exitFullscreen){
-        document.exitFullscreen();
-    }
-
-    isFullscreen = false;
-
-    const btn = document.getElementById("fs-btn");
-    if(btn){
-        btn.innerHTML = "⛶";
-    }
-
-    // remove overlay if exists
-    const overlay = document.getElementById("fs-exit-overlay");
-    if(overlay){
-        overlay.remove();
-    }
-}
-
-
-// CENTER ALERT MESSAGE
-function showFullscreenAlert(){
-
-    const alertBox = document.getElementById("fs-alert");
-    if(!alertBox) return;
-
-    alertBox.style.opacity = "1";
-
-    setTimeout(() => {
-        alertBox.style.opacity = "0";
-    }, 2500);
-}
-
-
-// MOBILE + FULLSCREEN EXIT BUTTON (VISIBLE ON IMAGE)
-function showFullscreenExitOverlay(){
-
-    // avoid duplicate overlay
-    if(document.getElementById("fs-exit-overlay")) return;
-
-    const overlay = document.createElement("div");
-    overlay.id = "fs-exit-overlay";
-    overlay.innerHTML = "✕";
-
-    overlay.onclick = exitFullscreenMode;
-
-    document.body.appendChild(overlay);
-}
-
-
-// ESC KEY SUPPORT (DESKTOP)
+// ESC SUPPORT
 document.addEventListener("keydown", function(e){
     if(e.key === "Escape"){
-        exitFullscreenMode();
-    }
-});
-
-
-// SAFETY: RESET STATE IF USER EXITS VIA BROWSER BUTTON
-document.addEventListener("fullscreenchange", function(){
-    if(!document.fullscreenElement){
-        isFullscreen = false;
-
-        const btn = document.getElementById("fs-btn");
-        if(btn){
-            btn.innerHTML = "⛶";
-        }
-
-        const overlay = document.getElementById("fs-exit-overlay");
+        const overlay = document.getElementById("image-fullscreen-overlay");
         if(overlay){
             overlay.remove();
         }
     }
 });
 </script>
+
 
 
 </body>
