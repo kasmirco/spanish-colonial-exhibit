@@ -1,4 +1,7 @@
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,6 +17,18 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
+/* =========================
+  
+
+
+DRAFT FOR FRAME IMAGE IN CULTURE SECTION (TESTING PURPOSES ONLY, IGNORE)
+
+
+
+========================= */
+
+
+
 
 /* =========================
    GLOBAL BACKGROUND (FIXED FULL PAGE)
@@ -27,7 +42,7 @@ html, body{
 body{
     background:
     linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("bgMUSIC.png") center/cover no-repeat;
+    url("bgCULTURE.png") center/cover no-repeat;
 
     background-attachment: fixed;
 }
@@ -56,7 +71,7 @@ body{
     text-align:center;
     color:#fff;
     width:100%;
-    max-width:1300px;
+    max-width:1400px;
 
     margin:120px auto 0;
     padding:0 20px; /* 👈 THIS FIXES EDGE ISSUE */
@@ -256,6 +271,7 @@ body{
 .frame-container{
     position:relative;
     flex:1; /* IMPORTANT */
+    
     display:flex;
     align-items:center;
     justify-content:center;
@@ -274,8 +290,8 @@ body{
 /* ACTUAL IMAGE (INSIDE FRAME) */
 .framed-image{
     position:relative;
-    max-width:70%;
-    max-height:70%;
+    max-width:100%;
+    max-height:100%;
     object-fit:contain;
 }
 
@@ -416,7 +432,7 @@ body{
 
 /* NAV BAR BASE */
 .custom-nav{
-    background-color: #4d431b33;
+    background-color: #86663623;
     padding-top:18px;
 
     position: fixed;
@@ -526,8 +542,24 @@ body{
     outline: none;
 }
 
-.navbar-dark .navbar-toggler-icon{
-    filter: invert(1);
+/* =========================
+   WHITE BURGER ICON
+========================= */
+
+/* REMOVE DEFAULT BORDER */
+.navbar-toggler{
+    border: 1px solid rgba(255,255,255,0.7) !important;
+    box-shadow: none !important;
+}
+
+/* REMOVE BLUE OUTLINE WHEN CLICKED */
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
+
+/* WHITE MENU ICON */
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 /* FOOTER */
@@ -777,7 +809,7 @@ The Spanish Colonial Period greatly influenced Filipino cuisine, introducing new
 
             <!-- CARD 1 -->
             <div class="card" onclick="openModal(0)">
-                <img src="Food(HORIZONTAL)1.jpg">
+                <img src="upd_food1(Horizontal).PNG">
                 <div class="overlay">
                     <p>Savor the irresistible taste of churros, a classic fried pastry famous for its crunchy texture and sweet cinnamon sugar coating. Originally introduced during the Spanish era, churros have become a popular snack enjoyed in many parts of the world. Captured by Janil Beljot on April 21, 2026 at Pasig City, this delicious delicacy represents the enduring legacy of Spanish culinary traditions.</p>
                 </div>
@@ -785,47 +817,39 @@ The Spanish Colonial Period greatly influenced Filipino cuisine, introducing new
 
             <!-- CARD 2 -->
             <div class="card" onclick="openModal(1)">
-                <img src="Food(HORIZONTAL)2.jpg">
-                <div class="overlay">
-                    <p>Experience the soft and buttery delight of ensaymada, a popular Filipino pastry topped with sugar, grated cheese, and sometimes buttercream. Derived from the Spanish ensaimada, this sweet bread became a cherished part of Filipino baking traditions and is often enjoyed during breakfast or merienda. Captured by Jinelle Balading on April 21, 2026 at Pasig City, this pastry reflects the lasting influence of Spanish culture on Filipino cuisine.</p>
-                </div>
-            </div>
-
-            <!-- CARD 3 -->
-            <div class="card" onclick="openModal(2)">
-                <img src="Food(HORIZONTAL)3.jpeg">
-                <div class="overlay">
-                    <p>Discover the rich flavors of menudo, a well-loved Filipino dish made with tender pork, liver, potatoes, carrots, and tomato-based sauce. Influenced by Spanish cuisine during the colonial period, menudo became a staple in Filipino celebrations and family gatherings. Captured by Janil Beljot on April 21, 2026, at Pasig City, this savory dish reflects the blend of Spanish and Filipino culinary heritage.</p>
-                </div>
-            </div>
-
-            <!-- CARD 4 -->
-            <div class="card" onclick="openModal(3)">
-                <img src="Food(HORIZONTAL)4.png">
+                <img src="upd_food2(Horizontal).png">
                 <div class="overlay">
                     <p>Celebrate the vibrant flavors of paella, a world-famous rice dish traditionally prepared with saffron, vegetables, seafood, or meat. Originating from Spain, paella became one of the most iconic dishes that influenced culinary traditions in many countries, including the Philippines. Captured by Ara Go on April 21, 2026 at Taguig City, this flavorful dish reflects the rich heritage of Spanish cuisine.</p>
                 </div>
             </div>
 
-            <!-- CARD 5 -->
-            <div class="card" onclick="openModal(4)">
-                <img src="Food(HORIZONTAL)5.jpg">
-                <div class="overlay">
-                    <p>Experience the satisfying crunch of chicharon, a popular snack made from deep-fried pork rind known for its crispy texture and savory flavor. Introduced through Spanish culinary influence, chicharon became a well-loved delicacy in the Philippines and is often enjoyed as a snack or paired with local dishes. Captured by Hans Mabao on April 28, 2026 at Taguig City this crunchy treat reflects the lasting connection between Spanish and Filipino food traditions.</p>
-                </div>
-            </div>
-
-            <!-- CARD 6 -->
-            <div class="card" onclick="openModal(5)">
-                <img src="Food(HORIZONTAL)6.jpeg">
+            <!-- CARD 3 -->
+            <div class="card" onclick="openModal(2)">
+                <img src="upd_food3(Horizontal).jpeg">
                 <div class="overlay">
                     <p>Enjoy the rich and savory taste of chicken adobo, a beloved Filipino dish made with tender chicken simmered in soy sauce, vinegar, garlic, and spices. While rooted in native Filipino cooking methods, the name adobo was given during the Spanish colonial period, reflecting the blend of local and Spanish influences. Captured by Jannah Tamayo on April 21, 2026 at Taguig City, this iconic dish represents the enduring heritage of Filipino cuisine.</p>
                 </div>
             </div>
 
+            <!-- CARD 4 -->
+            <div class="card" onclick="openModal(3)">
+                <img src="upd_food4(Horizontal).jpeg">
+                <div class="overlay">
+                    <p>Experience the soft and buttery delight of ensaymada, a popular Filipino pastry topped with sugar, grated cheese, and sometimes buttercream. Derived from the Spanish ensaimada, this sweet bread became a cherished part of Filipino baking traditions and is often enjoyed during breakfast or merienda. Captured by Jinelle Balading on April 21, 2026 at Pasig City, this pastry reflects the lasting influence of Spanish culture on Filipino cuisine.</p>
+                </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="card" onclick="openModal(4)">
+                <img src="upd_food6(Horizontal).jpeg">
+                <div class="overlay">
+                    <p>A timeless Filipino favorite, Caldereta (or Kaldereta) is a rich and savory stew influenced by Spanish colonization (1565–1898), traditionally made with goat or beef simmered in a thick tomato-based sauce with spices, vegetables, and liver spread. Developed across Philippine regions as a fusion of Spanish influence and local cooking practices, it remains a well-loved dish in Filipino cuisine. Captured by Danell Caong on May 2, 2026, this dish reflects the country’s culinary heritage.</p>
+                </div>
+            </div>
+
             <!-- CARD 7 -->
-            <div class="card" onclick="openModal(6)">
-                <img src="Food(HORIZONTAL)7.jpg">
+            <div class="card" onclick="openModal(5)">
+                <img src="upd_food7(Horizontal).jpeg">
                 <div class="overlay">
                     <p>Brazo de Mercedes is a Filipino dessert made from a soft meringue roll filled with rich custard, developed in the Philippines during the Spanish colonial period using European baking techniques and locally adapted ingredients. Captured by Raicelle Valdez on April 21, 2026 at Pasig City, this dessert reflects the lasting Spanish influence on Philippine pastry culture.</p>
                 </div>
@@ -859,8 +883,8 @@ The Spanish Colonial Period greatly influenced Filipino cuisine, introducing new
 
         <!-- TEXT SIDE -->
         <div class="modal-info">
-            <h2 id="modal-title">SAmple titl sadasd</h2>
-            <p id="modal-desc">dasdasda</p>
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
         </div>
 
     </div>
@@ -871,7 +895,8 @@ The Spanish Colonial Period greatly influenced Filipino cuisine, introducing new
      FOOTER (SEPARATE SECTION + OWN BACKGROUND)
 ========================= -->
 <footer class="footer">
-    © 2026 Spanish Colonial Exhibit | Designed by Divine Ginez
+    © 2026 Spanish Colonial Exhibit | Designed and Developed by John Kenneth Costinar
+
 </footer>
 
 
@@ -884,21 +909,53 @@ The Spanish Colonial Period greatly influenced Filipino cuisine, introducing new
 const images = [
 
 {
-    src: "Food(HORIZONTAL)1.jpg",
+    src: "upd_food1(Horizontal).PNG",
+    frameSrc: "upd_food1(Horizontal) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
             desc: "Savor the irresistible taste of churros, a classic fried pastry famous for its crunchy texture and sweet cinnamon sugar coating. Originally introduced during the Spanish era, churros have become a popular snack enjoyed in many parts of the world. Captured by Janil Beljot on April 21, 2026 at Pasig City, this delicious delicacy represents the enduring legacy of Spanish culinary traditions."
         },
         {
-            title: "Emotional Caption:",
-            desc: "The warmth of the churros and the sweetness of the chocolate made me pause and smile. In that small moment, nothing else mattered but the comfort right in front of me."
+            title: "Narrative Caption",
+            desc: "I was once a child whose love for sweets was on another level. Now that I have grown older, nothing still beats the warmth of churros and the sweetness of the chocolate - it brings back my childhood. In this small moment, I pause and smile. Right now, nothing else matters but the comfort in front of me."
         }
     ]
 },
 
 {
-    src: "Food(HORIZONTAL)2.jpg",
+    src: "upd_food2(Horizontal).PNG",
+    frameSrc: "upd_food2(Horizontal) - (With Frame).png",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Celebrate the vibrant flavors of paella, a world-famous rice dish traditionally prepared with saffron, vegetables, seafood, or meat. Originating from Spain, paella became one of the most iconic dishes that influenced culinary traditions in many countries, including the Philippines. Captured by Ara Go on April 21, 2026 at Taguig City, this flavorful dish reflects the rich heritage of Spanish cuisine."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "Eating this warm and delicious paella makes you feel happy, comforted, and truly blessed because every bite brings a wonderful feeling of togetherness and special memories with the people you love."
+        }
+    ]
+},
+
+{
+    src: "upd_food3(Horizontal).jpeg",
+    frameSrc: "upd_food3(Horizontal) - (With Frame).png",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Enjoy the rich and savory taste of chicken adobo, a beloved Filipino dish made with tender chicken simmered in soy sauce, vinegar, garlic, and spices. While rooted in native Filipino cooking methods, the name adobo was given during the Spanish colonial period, reflecting the blend of local and Spanish influences. Captured by Jannah Tamayo on April 21, 2026 at Taguig City, this iconic dish represents the enduring heritage of Filipino cuisine."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "A quiet kind of comfort rests on this plate, where every bite feels like something familiar and safe. It's the kind of meal that warms not just the body, but the heart too."
+        }
+    ]
+},
+
+{
+    src: "upd_food4(Horizontal).jpeg",
+    frameSrc: "upd_food4(Horizontal) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
@@ -906,69 +963,30 @@ const images = [
         },
         {
             title: "Emotional Caption:",
-            desc: "There is a profound sense of comfort in the simple warmth of home-baked bread and the nostalgia of childhood afternoons."
+            desc: "​A home-baked bread, simple in the eyes of who could not see the hands that prepared it. In  every bite, it reminds you of the cherished moments, the nostalgia during afternoon breaks. A profound sense of comfort is somehow still felt in a simple warmth of the home-baked bread."
         }
     ]
 },
 
-{
-    src: "Food(HORIZONTAL)3.jpeg",
-    captions: [
-        {
-            title: "Informative Caption:",
-            desc: "Discover the rich flavors of menudo, a well-loved Filipino dish made with tender pork, liver, potatoes, carrots, and tomato-based sauce. Influenced by Spanish cuisine during the colonial period, menudo became a staple in Filipino celebrations and family gatherings. Captured by Janil Beljot on April 21, 2026, at Pasig City, this savory dish reflects the blend of Spanish and Filipino culinary heritage."
-        },
-        {
-            title: "Emotional Caption:",
-            desc: "Filipino comfort food at its finest. Menudo always saves the day!! One plate of menudo and everything feels better #FOODIE #YUMMY"
-        }
-    ]
-},
 
 {
-    src: "Food(HORIZONTAL)4.png",
+    src: "upd_food6(Horizontal).jpeg",
+    frameSrc: "upd_food6(Horizontal) - (With Frame).png",
     captions: [
         {
-            title: "Informative Caption:",
-            desc: "Celebrate the vibrant flavors of paella, a world-famous rice dish traditionally prepared with saffron, vegetables, seafood, or meat. Originating from Spain, paella became one of the most iconic dishes that influenced culinary traditions in many countries, including the Philippines. Captured by Ara Go on April 21, 2026 at Taguig City, this flavorful dish reflects the rich heritage of Spanish cuisine."
-        },
-        {
-            title: "Interpretative Caption:",
-            desc: "Eating this warm and delicious paella makes you feel happy, comforted, and truly blessed because every bite brings a wonderful feeling of togetherness and special memories with the people you love."
-        }
-    ]
-},
-
-{
-    src: "Food(HORIZONTAL)5.jpg",
-    captions: [
-        {
-            title: "Informative Caption:",
-            desc: "Experience the satisfying crunch of chicharon, a popular snack made from deep-fried pork rind known for its crispy texture and savory flavor. Introduced through Spanish culinary influence, chicharon became a well-loved delicacy in the Philippines and is often enjoyed as a snack or paired with local dishes. Captured by Hans Mabao on April 28, 2026 at Taguig City, this crunchy treat reflects the lasting connection between Spanish and Filipino food traditions."
-        },
-        {
-            title: "Interpretative Caption:",
-            desc: "A plate filled with crispy, golden puffed chicharon snacks lightly coated in orange seasoning is placed on a white table against a dark background."
-        }
-    ]
-},
-
-{
-    src: "Food(HORIZONTAL)6.jpeg",
-    captions: [
-        {
-            title: "Informative Caption:",
-            desc: "Enjoy the rich and savory taste of chicken adobo, a beloved Filipino dish made with tender chicken simmered in soy sauce, vinegar, garlic, and spices. While rooted in native Filipino cooking methods, the name adobo was given during the Spanish colonial period, reflecting the blend of local and Spanish influences. Captured by Jannah Tamayo on April 21, 2026 at Taguig City, this iconic dish represents the enduring heritage of Filipino cuisine."
+            title: "Informational caption:",
+            desc: "A timeless Filipino favorite, Caldereta (or Kaldereta) is a rich and savory stew influenced by Spanish colonization (1565–1898), traditionally made with goat or beef simmered in a thick tomato-based sauce with spices, vegetables, and liver spread. Developed across Philippine regions as a fusion of Spanish influence and local cooking practices, it remains a well-loved dish in Filipino cuisine. Captured by Danell Caong on May 2, 2026, this dish reflects the country’s culinary heritage."
         },
         {
             title: "Descriptive Caption:",
-            desc: "A quiet kind of comfort rests on this plate, where every bite feels like something familiar and safe. It’s the kind of meal that warms not just the body, but the heart too."
+            desc: "Introduced during the Spanish era, caldereta evolved into a beloved Filipino dish served at family meals and special occasions."
         }
     ]
 },
 
 {
-    src: "Food(HORIZONTAL)7.jpg",
+    src: "upd_food7(Horizontal).jpeg",
+    frameSrc: "upd_food7(Horizontal) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
@@ -984,31 +1002,31 @@ const images = [
 ];
 
 
+
 let current = 0;
 
 // OPEN MODAL
 function openModal(index){
+
+    current = index; // ✅ IMPORTANT
 
     const modal = document.getElementById('modal');
     const box = document.getElementById('modal-box');
     const data = images[index];
 
     const img = document.getElementById('modal-img');
-    const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
 
-    img.src = data.src;
+    // ✅ SHOW FRAMED IMAGE IN MODAL
+    img.src = data.frameSrc;
 
-    // detect orientation from filename
-    const name = data.src.toLowerCase();
-
+    // OPTIONAL ORIENTATION (kept from your system)
     box.classList.remove("horizontal","vertical");
+    const verticalIndexes = [0,1,4];
 
-    if(name.includes("vertical")){
+    if (verticalIndexes.includes(index)) {
         box.classList.add("vertical");
-        frame.src = "Vertical(FRAME).png";
     } else {
         box.classList.add("horizontal");
-        frame.src = "Horizontal(FRAME).png";
     }
 
     const titleEl = document.getElementById('modal-title');
@@ -1017,31 +1035,18 @@ function openModal(index){
     titleEl.innerHTML = "";
     descEl.innerHTML = "";
 
-data.captions.forEach(item => {
-
-    descEl.innerHTML += `
+    data.captions.forEach(item => {
+        descEl.innerHTML += `
         <div style="margin-bottom:25px;">
-            <div style="
-                font-family: 'Old English Five', serif;
-                font-weight: bold;
-                font-size: 18px;
-                margin-bottom:6px;
-                color:#000;
-            ">
+            <div style="font-family:'Old English Five'; font-size:18px; font-weight:bold; margin-bottom:6px;">
                 ${item.title}
             </div>
-
-            <div style="
-                font-family: 'OldEnglishCustom', serif;
-                font-size: 15px;
-                line-height:1.6;
-                color:#000;
-            ">
+            <div style="font-family:'OldEnglishCustom'; font-size:15px; line-height:1.6;">
                 ${item.desc}
             </div>
         </div>
-    `;
-});
+        `;
+    });
 
     modal.style.display = "flex";
 }
@@ -1058,17 +1063,13 @@ document.getElementById('modal').addEventListener("click", function(e){
     }
 });
 
-
-
 let isFullscreen = false;
 
-// TOGGLE FULLSCREEN (IMAGE ONLY)
+// FULLSCREEN (SHOW ORIGINAL IMAGE)
 function toggleFullscreen(){
 
-    const img = document.getElementById("modal-img");
     const btn = document.getElementById("fs-btn");
 
-    // IF FULLSCREEN ALREADY OPEN → CLOSE
     const existing = document.getElementById("image-fullscreen-overlay");
 
     if(existing){
@@ -1078,7 +1079,6 @@ function toggleFullscreen(){
         return;
     }
 
-    // CREATE FULLSCREEN OVERLAY (IMAGE ONLY)
     const overlay = document.createElement("div");
     overlay.id = "image-fullscreen-overlay";
 
@@ -1090,9 +1090,10 @@ function toggleFullscreen(){
     overlay.style.justifyContent = "center";
     overlay.style.zIndex = "999999";
 
-    // IMAGE ONLY (NO FRAME, NO MODAL)
     const fullImg = document.createElement("img");
-    fullImg.src = img.src;
+
+    // ✅ SHOW ORIGINAL (NO FRAME)
+    fullImg.src = images[current].src;
 
     fullImg.style.maxWidth = "100%";
     fullImg.style.maxHeight = "100%";
@@ -1100,7 +1101,6 @@ function toggleFullscreen(){
 
     overlay.appendChild(fullImg);
 
-    // TAP ANYWHERE TO EXIT (MOBILE FRIENDLY)
     overlay.addEventListener("click", () => {
         overlay.remove();
         isFullscreen = false;
@@ -1113,78 +1113,10 @@ function toggleFullscreen(){
     btn.innerHTML = "⤢";
 }
 
-
-// EXIT FULLSCREEN (CLEAN HANDLER)
-function exitFullscreenMode(){
-
-    if(document.exitFullscreen){
-        document.exitFullscreen();
-    }
-
-    isFullscreen = false;
-
-    const btn = document.getElementById("fs-btn");
-    if(btn){
-        btn.innerHTML = "⛶";
-    }
-
-    // remove overlay if exists
-    const overlay = document.getElementById("fs-exit-overlay");
-    if(overlay){
-        overlay.remove();
-    }
-}
-
-
-// CENTER ALERT MESSAGE
-function showFullscreenAlert(){
-
-    const alertBox = document.getElementById("fs-alert");
-    if(!alertBox) return;
-
-    alertBox.style.opacity = "1";
-
-    setTimeout(() => {
-        alertBox.style.opacity = "0";
-    }, 2500);
-}
-
-
-// MOBILE + FULLSCREEN EXIT BUTTON (VISIBLE ON IMAGE)
-function showFullscreenExitOverlay(){
-
-    // avoid duplicate overlay
-    if(document.getElementById("fs-exit-overlay")) return;
-
-    const overlay = document.createElement("div");
-    overlay.id = "fs-exit-overlay";
-    overlay.innerHTML = "✕";
-
-    overlay.onclick = exitFullscreenMode;
-
-    document.body.appendChild(overlay);
-}
-
-
-// ESC KEY SUPPORT (DESKTOP)
+// ESC SUPPORT
 document.addEventListener("keydown", function(e){
     if(e.key === "Escape"){
-        exitFullscreenMode();
-    }
-});
-
-
-// SAFETY: RESET STATE IF USER EXITS VIA BROWSER BUTTON
-document.addEventListener("fullscreenchange", function(){
-    if(!document.fullscreenElement){
-        isFullscreen = false;
-
-        const btn = document.getElementById("fs-btn");
-        if(btn){
-            btn.innerHTML = "⛶";
-        }
-
-        const overlay = document.getElementById("fs-exit-overlay");
+        const overlay = document.getElementById("image-fullscreen-overlay");
         if(overlay){
             overlay.remove();
         }
