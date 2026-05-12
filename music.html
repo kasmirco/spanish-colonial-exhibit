@@ -1,4 +1,7 @@
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,6 +17,18 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
+/* =========================
+  
+
+
+DRAFT FOR FRAME IMAGE IN CULTURE SECTION (TESTING PURPOSES ONLY, IGNORE)
+
+
+
+========================= */
+
+
+
 
 /* =========================
    GLOBAL BACKGROUND (FIXED FULL PAGE)
@@ -27,7 +42,7 @@ html, body{
 body{
     background:
     linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("bgMUSIC.png") center/cover no-repeat;
+    url("bgCULTURE.png") center/cover no-repeat;
 
     background-attachment: fixed;
 }
@@ -56,7 +71,7 @@ body{
     text-align:center;
     color:#fff;
     width:100%;
-    max-width:1300px;
+    max-width:1400px;
 
     margin:120px auto 0;
     padding:0 20px; /* 👈 THIS FIXES EDGE ISSUE */
@@ -256,6 +271,7 @@ body{
 .frame-container{
     position:relative;
     flex:1; /* IMPORTANT */
+    
     display:flex;
     align-items:center;
     justify-content:center;
@@ -274,8 +290,8 @@ body{
 /* ACTUAL IMAGE (INSIDE FRAME) */
 .framed-image{
     position:relative;
-    max-width:70%;
-    max-height:70%;
+    max-width:100%;
+    max-height:100%;
     object-fit:contain;
 }
 
@@ -416,7 +432,7 @@ body{
 
 /* NAV BAR BASE */
 .custom-nav{
-    background-color: #4d431b33;
+    background-color: #86663623;
     padding-top:18px;
 
     position: fixed;
@@ -526,8 +542,24 @@ body{
     outline: none;
 }
 
-.navbar-dark .navbar-toggler-icon{
-    filter: invert(1);
+/* =========================
+   WHITE BURGER ICON
+========================= */
+
+/* REMOVE DEFAULT BORDER */
+.navbar-toggler{
+    border: 1px solid rgba(255,255,255,0.7) !important;
+    box-shadow: none !important;
+}
+
+/* REMOVE BLUE OUTLINE WHEN CLICKED */
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
+
+/* WHITE MENU ICON */
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 /* FOOTER */
@@ -778,49 +810,49 @@ body{
 
             <!-- CARD 1 -->
             <div class="card" onclick="openModal(0)">
-                <img src="Music(HORIZONTAL)1.jpeg">
+                <img src="upd_music1(Vertical).jpeg">
                 <div class="overlay">
-                    <p>Experience a heartfelt moment as a man serenades his wife with a song in the romantic surroundings of Intramuros, Manila. This emotional gesture reflects the Filipino tradition of harana, which was influenced by Spanish colonial culture and emphasizes love, music, and courtship. Captured by Brylle Sarong on March 30, 2026 in Fort Santiago, Intramuros this scene beautifully highlights the timeless romance and heritage preserved within the historic walls of Intramuros.</p>
+                    <p>A wooden harp is displayed inside a heritage-style room with capiz windows and antique furniture at a historical house museum in Casa Manila, Philippines. Captured by Gwen Almonte on March 31, 2026. The instrument represents the elegance of music during the Spanish Colonial period.</p>
                 </div>
             </div>
 
             <!-- CARD 2 -->
             <div class="card" onclick="openModal(1)">
-                <img src="Music(HORIZONTAL)2.jpeg">
+                <img src="upd_music2(Vertical).jpeg">
                 <div class="overlay">
-                    <p>Witness the cultural harmony of Filipino heritage through a man playing the bandurria, a traditional string instrument often used in Spanish-influenced folk music. Introduced during the Spanish colonial period, the bandurria became an essential part of rondalla ensembles in the Philippines, symbolizing both artistry and cultural fusion. Captured by Arles Clutario on April 4, 2026, at Taguig City, this moment reflects the enduring musical legacy shaped by Spanish influence.</p>
+                    <p>Grace and tradition come together as a woman plays the harp, an elegant string instrument that carries deep roots in Spanish musical heritage. Introduced during the colonial period, the harp became associated with classical and sacred music, often symbolizing refinement and cultural artistry in Filipino society. Captured by Bhea Suizo on March 29, 2026 in Casa Recuerdos de Taal, Batangas, this image reflects the enduring influence of Spanish culture on music and expression.</p>
                 </div>
             </div>
 
             <!-- CARD 3 -->
             <div class="card" onclick="openModal(2)">
-                <img src="Music(HORIZONTAL)3.jpeg">
+                <img src="upd_music3(Vertical).jpeg">
                 <div class="overlay">
-                    <p>Capture the soulful artistry of a man playing the guitar, an instrument deeply rooted in both Spanish influence and Filipino musical tradition. Introduced during the Spanish colonial period, the guitar became a staple in Filipino homes and folk music, often accompanying storytelling and heartfelt performances. Captured by Teover Fugen on April 12, 2026 in Santa Ana, Taguig City, this image reflects the enduring connection between music, culture, and history.</p>
+                    <p>Immerse in the elegance of music as hands glide across the piano keys, producing a timeless melody that reflects both emotion and artistry. Introduced to the Philippines during the Spanish colonial period, the piano became a symbol of refinement and was commonly found in homes, churches, and social gatherings. Captured by Jerome Vanzuela on April 22, 2026 in Casa Manila, Intramuros this image showcases the enduring influence of Western</p>
                 </div>
             </div>
 
             <!-- CARD 4 -->
             <div class="card" onclick="openModal(3)">
-                <img src="Error4.jpeg">
+                <img src="upd_music4(Horizontal).jpeg">
                 <div class="overlay">
-                    <p>A wooden harp is displayed inside a heritage-style room with capiz windows and antique furniture at a historical house museum in the Casa Manila, Philippines. Captured by Gwen Almonte on March 31, 2026. The instrument represents the elegance of music during the Spanish Colonial period.</p>
+                    <p>Witness the cultural harmony of Filipino heritage through a man playing the bandurria, a traditional string instrument often used in Spanish-influenced folk music. Introduced during the Spanish colonial period, the bandurria became an essential part of rondalla ensembles in the Philippines, symbolizing both artistry and cultural fusion. Captured by Arles Clutario on April 4, 2026, at Taguig City, this moment reflects the enduring musical legacy shaped by Spanish influence.</p>
                 </div>
             </div>
 
             <!-- CARD 5 -->
             <div class="card" onclick="openModal(4)">
-                <img src="Music(vertical)2.jpeg">
+                <img src="upd_music5(Horizontal).jpeg">
                 <div class="overlay">
-                    <p>Grace and tradition come together as a woman plays the harp, an elegant string instrument that carries deep roots in Spanish musical heritage. Introduced during the colonial period, the harp became associated with classical and sacred music, often symbolizing refinement and cultural artistry in Filipino society. Captured by Bhea Suizo on March 29, 2026 in Casa Recuerdos de Taal, Batangas this image reflects the enduring influence of Spanish culture on music and expression.</p>
+                    <p>Capture the soulful artistry of a man playing the guitar, an instrument deeply rooted in both Spanish influence and Filipino musical tradition. Introduced during the Spanish colonial period, the guitar became a staple in Filipino homes and folk music, often accompanying storytelling and heartfelt performances. Captured by Teover Fugen on April 12, 2026 in Santa Ana, Taguig City, this image reflects the enduring connection between music, culture, and history.</p>
                 </div>
             </div>
 
             <!-- CARD 6 -->
             <div class="card" onclick="openModal(5)">
-                <img src="Error6.PNG">
+                <img src="upd_music6(Horizontal).jpeg">
                 <div class="overlay">
-                    <p>Immerse in the elegance of music as hands glide across the piano keys, producing a timeless melody that reflects both emotion and artistry. Introduced to the Philippines during the Spanish colonial period, the piano became a symbol of refinement and was commonly found in homes, churches, and social gatherings. Captured by Jerome Vanzuela on April 22, 2026 in Casa Manila, Intramuros this image showcases the enduring influence of Western</p>
+                    <p>Experience a heartfelt moment as a man serenades his wife with a song in the romantic surroundings of Intramuros, Manila. This emotional gesture reflects the Filipino tradition of harana, which was influenced by Spanish colonial culture and emphasizes love, music, and courtship. Captured by Brylle Sarong on March 21, 2026 in Fort Santiago, Intramuros this scene beautifully highlights the timeless romance and heritage preserved within the historic walls of Intramuros.</p>
                 </div>
             </div>
 
@@ -851,8 +883,8 @@ body{
 
         <!-- TEXT SIDE -->
         <div class="modal-info">
-            <h2 id="modal-title">SAmple titl sadasd</h2>
-            <p id="modal-desc">dasdasda</p>
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
         </div>
 
     </div>
@@ -863,7 +895,8 @@ body{
      FOOTER (SEPARATE SECTION + OWN BACKGROUND)
 ========================= -->
 <footer class="footer">
-    © 2026 Spanish Colonial Exhibit | Designed by Divine Ginez
+    © 2026 Spanish Colonial Exhibit | Designed and Developed by John Kenneth Costinar
+
 </footer>
 
 
@@ -873,51 +906,11 @@ body{
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-const images = [
-{
-    src: "Music(HORIZONTAL)1.jpeg",
-    captions: [
-        {
-            title: "Informative Caption:",
-            desc: "Experience a heartfelt moment as a man serenades his wife with a song in the romantic surroundings of Intramuros, Manila. This emotional gesture reflects the Filipino tradition of harana, which was influenced by Spanish colonial culture and emphasizes love, music, and courtship. Captured by Brylle Sarang on March 30, 2026 in Fort Santiago, Intramuros this scene beautifully highlights the timeless romance and heritage preserved within the historic walls of Intramuros."
-        },
-        {
-            title: "Emotional Caption:",
-            desc: "As he sings and plays the guitar, every note becomes a confession of love meant only for her. The melody wraps around them like a quiet promise, turning an ordinary moment into something unforgettable. In her gaze and in his song, love speaks louder than words ever could."
-        }
-    ]
-},
+    const images = [
 
 {
-    src: "Music(HORIZONTAL)2.jpeg",
-    captions: [
-        {
-            title: "Informative Caption:",
-            desc: "Witness the cultural harmony of Filipino heritage through a man playing the bandurria, a traditional string instrument often used in Spanish-influenced folk music. Introduced during the Spanish colonial period, the bandurria became an essential part of rondalla ensembles in the Philippines, symbolizing both artistry and cultural fusion. Captured by Arles Clutario on April 4, 2026, at Taguig City, this moment reflects the enduring musical legacy shaped by Spanish influence."
-        },
-        {
-            title: "Emotional Caption:",
-            desc: "With every note from the bandurria, he pours out stories that words can no longer hold. The melody carries echoes of love, longing, and memories of a time that still lives in the heart. In his hands, music becomes emotion—softly touching every soul that listens."
-        }
-    ]
-},
-
-{
-    src: "Music(HORIZONTAL)3.jpeg",
-    captions: [
-        {
-            title: "Informative Caption:",
-            desc: "Capture the soulful artistry of a man playing the guitar, an instrument deeply rooted in both Spanish influence and Filipino musical tradition. Introduced during the Spanish colonial period, the guitar became a staple in Filipino homes and folk music, often accompanying storytelling and heartfelt performances. Captured by Teover Fugen on April 12, 2026 in Santa Ana, Taguig City, this image reflects the enduring connection between music, culture, and history."
-        },
-        {
-            title: "Emotional Caption:",
-            desc: "With every strum of the guitar, he releases emotions hidden deep within his heart. Each melody speaks of love, pain, hope, and memories too powerful for words alone. In that moment, the music becomes his voice and the song becomes his soul."
-        }
-    ]
-},
-
-{
-    src: "Error4.jpeg",
+    src: "upd_music1(Vertical).jpeg",
+    frameSrc: "upd_music1(Vertical) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
@@ -931,29 +924,76 @@ const images = [
 },
 
 {
-    src: "Music(vertical)2.jpeg",
+    src: "upd_music2(Vertical).jpeg",
+    frameSrc: "upd_music2(Vertical) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
-            desc: "Grace and tradition come together as a woman plays the harp, an elegant string instrument that carries deep roots in Spanish musical heritage. Introduced during the colonial period, the harp became associated with classical and sacred music, often symbolizing refinement and cultural artistry in Filipino society. Captured by Bhea Suizo on March 29, 2026 in Casa Recuerdos de Taal, Batangas this image reflects the enduring influence of Spanish culture on music and expression."
+            desc: "Grace and tradition come together as a woman plays the harp, an elegant string instrument that carries deep roots in Spanish musical heritage. Introduced during the colonial period, the harp became associated with classical and sacred music, often symbolizing refinement and cultural artistry in Filipino society. Captured by Bhea Suizo on March 29, 2026 in Casa Recuerdos de Taal, Batangas, this image reflects the enduring influence of Spanish culture on music and expression."
         },
         {
             title: "Interpretative Caption:",
-            desc: "Amidst the silence of a past time, her hands float above the harp strings like letters yet to be written. History does not stand still here—it sings, moves, and lives through every note."
+            desc: "Amidst the silence of a past time, her hands float above the harp strings like letters yet to be put down on paper. To travel is not only to go from one place to another but to enter into tales that had been developing long before our arrival. History does not simply stand still in this place; it sings, it moves, it lives. And in those notes suspended in the atmosphere, you understand that every journey becomes a page, a sentence waiting to be told."
         }
     ]
 },
 
 {
-    src: "Error6.PNG",
+    src: "upd_music3(Vertical).jpeg",
+    frameSrc: "upd_music3(Vertical) - (With Frame).png",
     captions: [
         {
             title: "Informative Caption:",
-            desc: "Immerse in the elegance of music as hands glide across the piano keys, producing a timeless melody that reflects both emotion and artistry. Introduced to the Philippines during the Spanish colonial period, the piano became a symbol of refinement and was commonly found in homes, churches, and social gatherings. Captured by Jerome Vanzuela on April 22, 2026 in Casa Manila, Intramuros this image showcases the enduring influence of Western musical tradition."
+            desc: "Immerse in the elegance of music as hands glide across the piano keys, producing a timeless melody that reflects both emotion and artistry. Introduced to the Philippines during the Spanish colonial period, the piano became a symbol of refinement and was commonly found in homes, churches, and social gatherings. Captured by Jerome Vanzuela on April 22, 2026 in Casa Manila, Intramuros this image showcases the enduring influence of Western."
         },
         {
             title: "Descriptive Caption:",
-            desc: "A beautifully crafted piano stands in quiet elegance, its polished keys and timeless design reflecting both artistry and tradition. Each detail captures the charm of classical music and refined craftsmanship."
+            desc: "A beautifully crafted piano stands in quiet elegance, its polished keys and timeless design reflecting both artistry and tradition. Each detail, from the smooth wooden finish to the graceful structure, captures the charm of classical music and refined craftsmanship. The instrument’s presence fills the space with a sense of sophistication and history."
+        }
+    ]
+},
+
+{
+    src: "upd_music4(Horizontal).jpeg",
+    frameSrc: "upd_music4(Horizontal) - (With Frame).png",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Witness the cultural harmony of Filipino heritage through a man playing the bandurria, a traditional string instrument often used in Spanish-influenced folk music. Introduced during the Spanish colonial period, the bandurria became an essential part of rondalla ensembles in the Philippines, symbolizing both artistry and cultural fusion. Captured by Arles Clutario on April 4, 2026, at Taguig City, this moment reflects the enduring musical legacy shaped by Spanish influence."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "With every note from the bandurria, he pours out stories that words can no longer hold. The melody carries echoes of love, longing, and memories of a time that still lives in the heart. In his hands, music becomes emotion—softly touching every soul that listens."
+        }
+    ]
+},
+
+{
+    src: "upd_music5(Horizontal).jpeg",
+    frameSrc: "upd_music5(Horizontal) - (With Frame).png",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Capture the soulful artistry of a man playing the guitar, an instrument deeply rooted in both Spanish influence and Filipino musical tradition. Introduced during the Spanish colonial period, the guitar became a staple in Filipino homes and folk music, often accompanying storytelling and heartfelt performances. Captured by Teover Fugen on April 12, 2026 in Santa Ana, Taguig City, this image reflects the enduring connection between music, culture, and history."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "With every strum of the guitar, he releases emotions hidden deep within his heart. Each melody speaks love, pain, hope, and memories too powerful for words to speak. In that moment, the music becomes his voice and the song becomes his soul."
+        }
+    ]
+},
+
+{
+    src: "upd_music6(Horizontal).jpeg",
+    frameSrc: "upd_music6(Horizontal) - (With Frame).png",
+    captions: [
+        {
+            title: "Informative Caption:",
+            desc: "Experience a heartfelt moment as a man serenades his wife with a song in the romantic surroundings of Intramuros, Manila. This emotional gesture reflects the Filipino tradition of harana, which was influenced by Spanish colonial culture and emphasizes love, music, and courtship. Captured by Brylle Sarong on March 21, 2026 in Fort Santiago, Intramuros this scene beautifully highlights the timeless romance and heritage preserved within the historic walls of Intramuros."
+        },
+        {
+            title: "Emotional Caption:",
+            desc: "As he sings and plays the guitar, every note becomes a confession of love meant only for her. The melody wraps around them like a quiet promise, turning an ordinary moment into something unforgettable. In her gaze and in his song, love speaks louder than words ever could."
         }
     ]
 }
@@ -964,32 +1004,26 @@ let current = 0;
 // OPEN MODAL
 function openModal(index){
 
+    current = index; // ✅ IMPORTANT
+
     const modal = document.getElementById('modal');
     const box = document.getElementById('modal-box');
     const data = images[index];
 
     const img = document.getElementById('modal-img');
-    const frame = document.getElementById('frame-img'); // ✅ IMPORTANT
 
-img.src = data.src;
+    // ✅ SHOW FRAMED IMAGE IN MODAL
+    img.src = data.frameSrc;
 
-// detect orientation from filename
-const name = data.src.toLowerCase();
+    // OPTIONAL ORIENTATION (kept from your system)
+    box.classList.remove("horizontal","vertical");
+    const verticalIndexes = [0,1,4];
 
-box.classList.remove("horizontal", "vertical");
-
-// treat these as vertical images too
-if (
-    name.includes("vertical") ||
-    name.includes("error4.jpeg") ||
-    name.includes("error6.png")
-) {
-    box.classList.add("vertical");
-    frame.src = "Vertical(FRAME).png";
-} else {
-    box.classList.add("horizontal");
-    frame.src = "Horizontal(FRAME).png";
-}
+    if (verticalIndexes.includes(index)) {
+        box.classList.add("vertical");
+    } else {
+        box.classList.add("horizontal");
+    }
 
     const titleEl = document.getElementById('modal-title');
     const descEl = document.getElementById('modal-desc');
@@ -997,31 +1031,18 @@ if (
     titleEl.innerHTML = "";
     descEl.innerHTML = "";
 
-data.captions.forEach(item => {
-
-    descEl.innerHTML += `
+    data.captions.forEach(item => {
+        descEl.innerHTML += `
         <div style="margin-bottom:25px;">
-            <div style="
-                font-family: 'Old English Five', serif;
-                font-weight: bold;
-                font-size: 18px;
-                margin-bottom:6px;
-                color:#000;
-            ">
+            <div style="font-family:'Old English Five'; font-size:18px; font-weight:bold; margin-bottom:6px;">
                 ${item.title}
             </div>
-
-            <div style="
-                font-family: 'OldEnglishCustom', serif;
-                font-size: 15px;
-                line-height:1.6;
-                color:#000;
-            ">
+            <div style="font-family:'OldEnglishCustom'; font-size:15px; line-height:1.6;">
                 ${item.desc}
             </div>
         </div>
-    `;
-});
+        `;
+    });
 
     modal.style.display = "flex";
 }
@@ -1038,17 +1059,13 @@ document.getElementById('modal').addEventListener("click", function(e){
     }
 });
 
-
-
 let isFullscreen = false;
 
-// TOGGLE FULLSCREEN (IMAGE ONLY)
+// FULLSCREEN (SHOW ORIGINAL IMAGE)
 function toggleFullscreen(){
 
-    const img = document.getElementById("modal-img");
     const btn = document.getElementById("fs-btn");
 
-    // IF FULLSCREEN ALREADY OPEN → CLOSE
     const existing = document.getElementById("image-fullscreen-overlay");
 
     if(existing){
@@ -1058,7 +1075,6 @@ function toggleFullscreen(){
         return;
     }
 
-    // CREATE FULLSCREEN OVERLAY (IMAGE ONLY)
     const overlay = document.createElement("div");
     overlay.id = "image-fullscreen-overlay";
 
@@ -1070,9 +1086,10 @@ function toggleFullscreen(){
     overlay.style.justifyContent = "center";
     overlay.style.zIndex = "999999";
 
-    // IMAGE ONLY (NO FRAME, NO MODAL)
     const fullImg = document.createElement("img");
-    fullImg.src = img.src;
+
+    // ✅ SHOW ORIGINAL (NO FRAME)
+    fullImg.src = images[current].src;
 
     fullImg.style.maxWidth = "100%";
     fullImg.style.maxHeight = "100%";
@@ -1080,7 +1097,6 @@ function toggleFullscreen(){
 
     overlay.appendChild(fullImg);
 
-    // TAP ANYWHERE TO EXIT (MOBILE FRIENDLY)
     overlay.addEventListener("click", () => {
         overlay.remove();
         isFullscreen = false;
@@ -1093,78 +1109,10 @@ function toggleFullscreen(){
     btn.innerHTML = "⤢";
 }
 
-
-// EXIT FULLSCREEN (CLEAN HANDLER)
-function exitFullscreenMode(){
-
-    if(document.exitFullscreen){
-        document.exitFullscreen();
-    }
-
-    isFullscreen = false;
-
-    const btn = document.getElementById("fs-btn");
-    if(btn){
-        btn.innerHTML = "⛶";
-    }
-
-    // remove overlay if exists
-    const overlay = document.getElementById("fs-exit-overlay");
-    if(overlay){
-        overlay.remove();
-    }
-}
-
-
-// CENTER ALERT MESSAGE
-function showFullscreenAlert(){
-
-    const alertBox = document.getElementById("fs-alert");
-    if(!alertBox) return;
-
-    alertBox.style.opacity = "1";
-
-    setTimeout(() => {
-        alertBox.style.opacity = "0";
-    }, 2500);
-}
-
-
-// MOBILE + FULLSCREEN EXIT BUTTON (VISIBLE ON IMAGE)
-function showFullscreenExitOverlay(){
-
-    // avoid duplicate overlay
-    if(document.getElementById("fs-exit-overlay")) return;
-
-    const overlay = document.createElement("div");
-    overlay.id = "fs-exit-overlay";
-    overlay.innerHTML = "✕";
-
-    overlay.onclick = exitFullscreenMode;
-
-    document.body.appendChild(overlay);
-}
-
-
-// ESC KEY SUPPORT (DESKTOP)
+// ESC SUPPORT
 document.addEventListener("keydown", function(e){
     if(e.key === "Escape"){
-        exitFullscreenMode();
-    }
-});
-
-
-// SAFETY: RESET STATE IF USER EXITS VIA BROWSER BUTTON
-document.addEventListener("fullscreenchange", function(){
-    if(!document.fullscreenElement){
-        isFullscreen = false;
-
-        const btn = document.getElementById("fs-btn");
-        if(btn){
-            btn.innerHTML = "⛶";
-        }
-
-        const overlay = document.getElementById("fs-exit-overlay");
+        const overlay = document.getElementById("image-fullscreen-overlay");
         if(overlay){
             overlay.remove();
         }
